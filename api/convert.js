@@ -3,18 +3,6 @@ export default async function handler(request,response){
   if(request.method!=="POST") return response.status(405).json({error:"Method not allowed"});
   try{
     const chunks=[]; for await(const chunk of request) chunks.push(chunk); const body=Buffer.concat(chunks);
-    const base=process.env.CONVERTER_API_URL;
-    if(base){
-      const headers={};
-      if(process.env.CONVERTER_API_KEY) headers.Authorization="Bearer "+process.env.CONVERTER_API_KEY;
-      if(request.headers["content-type"]) headers["content-type"]=request.headers["content-type"];
-      const upstream=await fetch(base,{method:"POST",headers,body});
-      response.status(upstream.status);
-      const type=upstream.headers.get("content-type"); if(type) response.setHeader("content-type",type);
-      const disposition=upstream.headers.get("content-disposition"); if(disposition) response.setHeader("content-disposition",disposition);
-      response.send(Buffer.from(await upstream.arrayBuffer()));
-      return;
-    }
     const inputType=request.headers["content-type"]||"";
     if(!inputType.includes("multipart/form-data")) return response.status(400).json({error:"Expected multipart/form-data with file and output fields."});
     const {default:assimpFactory}=await import("assimpjs");
@@ -30,7 +18,7 @@ export default async function handler(request,response){
     const result=ajs.ConvertFileList(list,"glb2");
     if(!result.IsSuccess()||result.FileCount()===0) return response.status(422).json({error:"Assimp WASM could not import this file.",code:String(result.GetErrorCode?.()||"unknown")});
     const out=result.GetFile(0).GetContent();
-    response.status(200); response.setHeader("content-type","model/gltf-binary"); response.setHeader("x-convert3d-result-format","glb"); response.setHeader("x-convert3d-processing","server-assimp-wasm");
+    response.status(200); response.setHeader("content-type","model/gltf-binary"); response.setHeader("x-convert3d-result-format","glb"); response.setHeader("x-convert3d-processing","free-server-assimp-wasm");
     response.send(Buffer.from(out));
   }catch(error){response.status(502).json({error:"Conversion failed.",detail:error instanceof Error?error.message:"Unknown error"});}
 }
