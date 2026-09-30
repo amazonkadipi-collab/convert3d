@@ -43,7 +43,6 @@ function Header(){
       <Brand/>
       <nav className="top-links" aria-label="Primary navigation">
         <NavLink to="/convert" className={({isActive})=>isActive?"top-link active":"top-link"}>Convert Model</NavLink>
-        <NavLink to="/pricing" className={({isActive})=>isActive?"top-link active":"top-link"}>Pricing</NavLink>
       </nav>
       <Link className="header-cta" to="/convert">Convert Model</Link>
     </div>
@@ -56,7 +55,7 @@ function Footer(){
       <div className="footer-brand"><Brand/><p>Free 3D model tools that keep supported processing on your device.</p></div>
       <div><b>Company</b><Link to="/posts">Blog</Link><Link to="/about">About</Link></div>
       <div><b>Tools &amp; API</b><Link to="/convert">Convert</Link><Link to="/compress">Compress</Link><Link to="/render-model">Render</Link><Link to="/view">View</Link><Link to="/developer-api">Developer API</Link></div>
-      <div><b>Community</b><a href="https://discord.gg/" target="_blank" rel="noreferrer">Discord</a><Link to="/pricing">Pricing</Link></div>
+      <div><b>Community</b><a href="https://discord.gg/" target="_blank" rel="noreferrer">Discord</a></div>
     </div>
     <div className="wrap footer-bottom"><span>© 2026 Convert3D</span><span><Link to="/about/privacy">Privacy</Link><Link to="/about/terms">Terms</Link></span></div>
   </footer>
@@ -298,53 +297,7 @@ function ImageTo3D(){
   return <PageShell title="Image to 3D" subtitle="Turn a reference image into a lightweight 3D relief locally in your browser."><div className="tool-card"><Uploader accept="image/*" labelText="Select a reference image" onFiles={f=>{setImg(f[0]);setError("");setResult(null);setObject(null)}}/>{img&&<div className="success-box">✓ Ready: {img.name}</div>}{object&&<ModelCanvas object={object}/>}<div className="converter-controls"><label>Quality<select value={quality} onChange={e=>setQuality(e.target.value)}><option value="fast">Fast</option><option value="balanced">Balanced</option><option value="high">High detail</option></select></label><button className="primary-btn" disabled={!img||busy} onClick={generate}>{busy?"Generating…":"Generate 3D"}</button></div>{error&&<div className="error-box">{error}</div>}{result&&<div className="success-box">✓ 3D relief ready. <button className="text-link" onClick={()=>downloadBlob(result,(img?.name||"model").replace(/.[^.]+$/,"")+".glb")}>Download GLB</button></div>}</div></PageShell>
 }
 
-function Pricing(){
-  useSEO("Pricing | Convert 3D","Free 3D conversion, viewing, compression and browser tools with no paid plans.","/pricing");
-  return <PageShell title="Everything is free" subtitle="Use the Convert3D browser tools without a paid plan, subscription or checkout.">
-    <div className="pricing-grid free-pricing-grid">
-      <div className="price-card free-card">
-        <span>Free</span>
-        <h2>$0 <small>forever</small></h2>
-        <p>All core browser-first tools are available at no cost.</p>
-        <Link className="primary-btn" to="/convert">Start converting</Link>
-        <div className="price-list">
-          {[
-            "3D model conversion on supported formats",
-            "3D model viewer",
-            "3D model rendering to PNG",
-            "Mesh compression to GLB",
-            "Image to 3D relief",
-            "No account required",
-            "No subscription",
-            "No payment details"
-          ].map(x=><span key={x}>✓ {x}</span>)}
-        </div>
-      </div>
-      <div className="price-card free-card">
-        <span>Browser tools</span>
-        <h2>$0 <small>always</small></h2>
-        <p>Files can stay on your device for workflows handled by the local browser engines.</p>
-        <Link className="secondary-btn" to="/view">Open viewer</Link>
-        <div className="price-list">
-          {["Local 3D preview","Wireframe mode","PNG capture","Local mesh processing"].map(x=><span key={x}>✓ {x}</span>)}
-        </div>
-      </div>
-      <div className="price-card free-card">
-        <span>Developer</span>
-        <h2>Free <small>in this repo</small></h2>
-        <p>The included health and conversion endpoints are provided as part of this project.</p>
-        <Link className="secondary-btn" to="/developer-api">Developer API</Link>
-        <div className="price-list">
-          {["POST /api/convert","GET /api/health","No paid checkout in the UI","Clear unsupported-format handling"].map(x=><span key={x}>✓ {x}</span>)}
-        </div>
-      </div>
-    </div>
-    <section className="section free-note">
-      <h2>No paid tier</h2>
-      <p className="lead">This deployment does not sell credits or subscriptions. Actual conversion availability still depends on the browser engine and the selected file format.</p>
-    </section>
-  </PageShell>
-}
+
 function API(){
   useSEO("Convert3D API","Developer API information for integrations using the repository conversion endpoint.","/developer-api");
   return <PageShell title="Convert3D API" subtitle="Integrate supported conversion workflows into your own applications."><div className="api-page-grid"><div className="tool-card"><h2>POST /api/convert</h2><pre>multipart/form-data{String.fromCharCode(10)}file = model.step{String.fromCharCode(10)}output = glb</pre><p>Use the endpoint for formats supported by the bundled server engine. Validate the response headers and do not assume unsupported outputs are available.</p></div><div className="api-copy"><h2>Built for developers</h2><p>Simple REST endpoint, health check, and the same browser-first format catalog used by the web interface.</p><Link className="primary-btn" to="/convert">Get Started</Link></div></div></PageShell>
@@ -371,7 +324,7 @@ export default function App(){
     <Route path="/" element={<Home/>}/><Route path="/convert" element={<Convert/>}/><Route path="/all" element={<All/>}/>
     <Route path="/convert/:format" element={<FormatPage/>}/><Route path="/:pair/app" element={<Pair/>}/><Route path="/:pair" element={<Pair/>}/>
     <Route path="/compress" element={<Tool kind="compress"/>}/><Route path="/render-model" element={<Tool kind="render"/>}/><Route path="/view" element={<Tool kind="view"/>}/>
-    <Route path="/image-to-3d" element={<ImageTo3D/>}/><Route path="/pricing" element={<Pricing/>}/><Route path="/developer-api" element={<API/>}/>
+    <Route path="/image-to-3d" element={<ImageTo3D/>}/><Route path="/developer-api" element={<API/>}/>
     <Route path="/posts" element={<Posts/>}/><Route path="/posts/:slug" element={<Post/>}/><Route path="/about/:section?" element={<About/>}/><Route path="*" element={<NotFound/>}/>
   </Routes><Footer/></div>
 }
