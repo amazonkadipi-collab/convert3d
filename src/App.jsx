@@ -12,7 +12,7 @@ const sampleModels=[
   ["CAD Motor","https://convert3d.vercel.app/_next/static/media/cad-motor.c9d60b7c.png"],
   ["Submarine","https://convert3d.vercel.app/_next/static/media/submarine.f0e16e26.png"]
 ];
-const trust=["80 Level","Adidas","Amazon","Berkeley","BMW","Bosch","CGChannel","EA","Foster + Partners","Google","NVIDIA","RISD","Siemens","Walmart"];
+
 const label=k=>formats.find(x=>x[0]===k)?.[1]||String(k||"").toUpperCase();
 const metaName=k=>formats.find(x=>x[0]===k)?.[2]||"3D file";
 const isKnownFormat=k=>formats.some(x=>x[0]===k);
@@ -145,7 +145,7 @@ function Home(){
         <div className="eyebrow">NEW · SHARE THE MODEL, NOT THE FORMAT →</div>
         <h1>Convert 3D models<br/>in seconds</h1>
         <p>Free, secure and fully private. Just drag and drop your 3D model file to convert it to any popular format.</p>
-        <div className="hero-actions"><Link className="primary-btn" to="/convert">Convert Model</Link><a className="secondary-btn" href="https://www.youtube.com/" target="_blank" rel="noreferrer">Watch a video</a></div>
+        <div className="hero-actions"><Link className="primary-btn" to="/convert">Convert Model</Link><Link className="secondary-btn" to="/view">View a model</Link></div>
         <Converter/>
         <SampleModels/>
       </div>
@@ -254,9 +254,9 @@ function ImageTo3D(){
 function Pricing(){
   useSEO("Pricing | Convert 3D","3D conversion plans and capabilities for browser tools and API users.","/pricing");
   return <PageShell title="3D conversion that fits your budget" subtitle="Start with browser tools, then scale when your workflow needs more capacity.">
-    <div className="pricing-grid"><div className="price-card"><span>Free</span><h2>$0 <small>/month</small></h2><p>Try the browser tools before you subscribe.</p><button className="primary-btn">Get started</button><div className="price-list">{["Core browser tools","Local 3D viewing","Local compression","No account required"].map(x=><span key={x}>✓ {x}</span>)}</div></div>
-    <div className="price-card"><span>Pay as you go</span><h2>$18 <small>3 credits</small></h2><p>One-off top-up for conversion credits.</p><button className="secondary-btn">Buy now</button><div className="price-list"><span>✓ 3 conversion downloads</span><span>✓ No subscription required</span><span>✓ Top up anytime</span></div></div>
-    <div className="price-card"><span>Pro</span><h2>$29 <small>/month</small></h2><p>Unlimited conversions, compression, and advanced tools.</p><button className="primary-btn">Subscribe</button><div className="price-list">{["Unlimited 3D conversions","Strong compression","50 AI generations / month","AI render and generation tools"].map(x=><span key={x}>✓ {x}</span>)}</div></div></div>
+    <div className="pricing-grid"><div className="price-card"><span>Free</span><h2>$0 <small>/month</small></h2><p>Try the browser tools before you subscribe.</p><Link className="primary-btn" to="/convert">Get started</Link><div className="price-list">{["Core browser tools","Local 3D viewing","Local compression","No account required"].map(x=><span key={x}>✓ {x}</span>)}</div></div>
+    <div className="price-card"><span>Pay as you go</span><h2>$18 <small>3 credits</small></h2><p>One-off top-up for conversion credits.</p><Link className="secondary-btn" to="/pricing">View plan</Link><div className="price-list"><span>✓ 3 conversion downloads</span><span>✓ No subscription required</span><span>✓ Top up anytime</span></div></div>
+    <div className="price-card"><span>Pro</span><h2>$29 <small>/month</small></h2><p>Unlimited conversions, compression, and advanced tools.</p><Link className="primary-btn" to="/developer-api">Contact API</Link><div className="price-list">{["Unlimited 3D conversions","Strong compression","50 AI generations / month","AI render and generation tools"].map(x=><span key={x}>✓ {x}</span>)}</div></div></div>
   </PageShell>
 }
 
