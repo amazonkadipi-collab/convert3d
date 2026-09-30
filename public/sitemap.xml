@@ -1,90 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://convert3d.vercel.app/</loc></url>
-<url><loc>https://convert3d.vercel.app/convert</loc></url>
-<url><loc>https://convert3d.vercel.app/all</loc></url>
-<url><loc>https://convert3d.vercel.app/compress</loc></url>
-<url><loc>https://convert3d.vercel.app/render-model</loc></url>
-<url><loc>https://convert3d.vercel.app/view</loc></url>
-<url><loc>https://convert3d.vercel.app/image-to-3d</loc></url>
-<url><loc>https://convert3d.vercel.app/pricing</loc></url>
-<url><loc>https://convert3d.vercel.app/developer-api</loc></url>
-<url><loc>https://convert3d.vercel.app/posts</loc></url>
-<url><loc>https://convert3d.vercel.app/about</loc></url>
-<url><loc>https://convert3d.vercel.app/about/privacy</loc></url>
-<url><loc>https://convert3d.vercel.app/about/terms</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/step</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/stp</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/sldprt</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/sldasm</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/slddrw</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/obj</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/fbx</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/stl</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/gltf</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/glb</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/usd</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/usda</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/usdc</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/usdz</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/3dm</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/max</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/blend</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/skp</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/dae</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/dwg</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/dxf</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/3ds</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/iges</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/igs</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/ply</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/vox</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/mdl</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/3mf</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/brep</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/smd</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/lwo</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/bvh</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/x</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/rbxm</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/rbxl</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/b3d</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/off</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/md3</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/ase</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/scn</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/md2</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/ac3d</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/ac</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/ms3d</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/cob</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/vta</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/raw</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/ter</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/hmb</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/xgl</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/zgl</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/lws</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/csm</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/irrmesh</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/irr</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/iqm</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/mdc</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/md5</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/m3d</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/ogex</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/x3d</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/q3s</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/nff</loc></url>
-<url><loc>https://convert3d.vercel.app/convert/ndo</loc></url>
-<url><loc>https://convert3d.vercel.app/step-to-obj</loc></url>
-<url><loc>https://convert3d.vercel.app/step-to-stl</loc></url>
-<url><loc>https://convert3d.vercel.app/stl-to-glb</loc></url>
-<url><loc>https://convert3d.vercel.app/obj-to-fbx</loc></url>
-<url><loc>https://convert3d.vercel.app/fbx-to-glb</loc></url>
-<url><loc>https://convert3d.vercel.app/ifc-to-stl</loc></url>
-<url><loc>https://convert3d.vercel.app/dwg-to-dxf</loc></url>
-<url><loc>https://convert3d.vercel.app/blend-to-glb</loc></url>
-<url><loc>https://convert3d.vercel.app/skp-to-obj</loc></url>
-<url><loc>https://convert3d.vercel.app/3dm-to-obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert</loc></url>
+  <url><loc>https://convert3d.vercel.app/all</loc></url>
+  <url><loc>https://convert3d.vercel.app/compress</loc></url>
+  <url><loc>https://convert3d.vercel.app/render-model</loc></url>
+  <url><loc>https://convert3d.vercel.app/view</loc></url>
+  <url><loc>https://convert3d.vercel.app/image-to-3d</loc></url>
+  <url><loc>https://convert3d.vercel.app/pricing</loc></url>
+  <url><loc>https://convert3d.vercel.app/developer-api</loc></url>
+  <url><loc>https://convert3d.vercel.app/posts</loc></url>
+  <url><loc>https://convert3d.vercel.app/about</loc></url>
+  <url><loc>https://convert3d.vercel.app/about/privacy</loc></url>
+  <url><loc>https://convert3d.vercel.app/about/terms</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/step</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/stp</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/sldprt</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/sldasm</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/slddrw</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/fbx</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/gltf</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/usd</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/usda</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/usdc</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/usdz</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/3dm</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/max</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/blend</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/skp</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/dae</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/dwg</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/dxf</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/3ds</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/iges</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/igs</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ply</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/vox</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/mdl</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/3mf</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/brep</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/smd</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/lwo</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/bvh</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/x</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/rbxm</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/rbxl</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/b3d</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/off</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/md3</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ase</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/scn</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/md2</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ac3d</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ac</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ms3d</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/cob</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/vta</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/raw</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ter</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/hmb</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/xgl</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/zgl</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/lws</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/csm</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/irrmesh</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/irr</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/iqm</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/mdc</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/md5</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/m3d</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ogex</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/x3d</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/q3s</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/nff</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ndo</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/amf</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ifc</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/gcode</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/nc</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/3d</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/xml</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/acc</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/amj</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/ask</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/enff</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/mot</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/pmx</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/prj</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/q3o</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/sib</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/uc</loc></url>
+  <url><loc>https://convert3d.vercel.app/convert/lxo</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-fbx</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-gltf</loc></url>
+  <url><loc>https://convert3d.vercel.app/stp-to-obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/stp-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/iges-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/igs-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/stl-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/stl-to-obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/stl-to-ply</loc></url>
+  <url><loc>https://convert3d.vercel.app/obj-to-fbx</loc></url>
+  <url><loc>https://convert3d.vercel.app/obj-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/fbx-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/fbx-to-obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/ifc-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/ifc-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/dwg-to-dxf</loc></url>
+  <url><loc>https://convert3d.vercel.app/dwg-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/dxf-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/blend-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/blend-to-fbx</loc></url>
+  <url><loc>https://convert3d.vercel.app/skp-to-obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/skp-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/3dm-to-obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/3dm-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/max-to-stl</loc></url>
+  <url><loc>https://convert3d.vercel.app/3ds-to-obj</loc></url>
+  <url><loc>https://convert3d.vercel.app/dae-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/ply-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/3mf-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/usdz-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/gltf-to-glb</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-obj/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-fbx/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/step-to-gltf/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/stp-to-obj/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/stp-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/iges-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/igs-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/stl-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/stl-to-obj/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/stl-to-ply/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/obj-to-fbx/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/obj-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/fbx-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/fbx-to-obj/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/ifc-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/ifc-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/dwg-to-dxf/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/dwg-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/dxf-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/blend-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/blend-to-fbx/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/skp-to-obj/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/skp-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/3dm-to-obj/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/3dm-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/max-to-stl/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/3ds-to-obj/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/dae-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/ply-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/3mf-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/usdz-to-glb/app</loc></url>
+  <url><loc>https://convert3d.vercel.app/gltf-to-glb/app</loc></url>
 </urlset>
