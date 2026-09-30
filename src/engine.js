@@ -109,6 +109,36 @@ export async function exportModel(object,target){
   }
   throw new Error("The "+target.toUpperCase()+" exporter is not enabled yet. Use OBJ, STL, PLY, GLTF or GLB.");
 }
+export async function imageTo3D(file,quality="balanced"){
+  const bitmap=await createImageBitmap(file);
+  const size=quality==="high"?160:quality==="fast"?72:112;
+  const canvas=document.createElement("canvas"); canvas.width=size; canvas.height=size;
+  const ctx=canvas.getContext("2d",{willReadFrequently:true}); if(!ctx) throw new Error("Image processing is not available in this browser.");
+  ctx.drawImage(bitmap,0,0,size,size); bitmap.close();
+  const pixels=ctx.getImageData(0,0,size,size).data;
+  const geometry=new THREE.BufferGeometry();
+  const positions=new Float32Array(size*size*3);
+  const indices=[];
+  const scale=quality==="high"?1.8:quality==="fast"?1.2:1.5;
+  for(let y=0;y<size;y++) for(let x=0;x<size;x++){
+    const i=y*size+x, p=i*4;
+    const lum=(0.2126*pixels[p]+0.7152*pixels[p+1]+0.0722*pixels[p+2])/255;
+    const z=(lum-.5)*scale;
+    positions[i*3]=(x/(size-1)-.5)*4;
+    positions[i*3+1]=(1-y/(size-1)-.5)*4;
+    positions[i*3+2]=z;
+  }
+  for(let y=0;y<size-1;y++) for(let x=0;x<size-1;x++){
+    const i=y*size+x, a=i,b=i+1,c=i+size,d=i+size+1;
+    indices.push(a,c,b,b,c,d);
+  }
+  geometry.setAttribute("position",new THREE.BufferAttribute(positions,3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  const root=new THREE.Group();
+  root.add(new THREE.Mesh(geometry,new THREE.MeshStandardMaterial({color:0xb7c4d7,metalness:.08,roughness:.72,side:THREE.DoubleSide})));
+  return {object:root,source:"image",engine:"Local image-to-3D relief"};
+}
 export const browserSupportedInputs=[...localInputs,...cadInputs];
 export async function compressModel(object,quality="balanced"){
   const root=object.clone(true);
