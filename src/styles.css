@@ -108,3 +108,25 @@
   .format-grid{grid-template-columns:repeat(2,1fr)}
   .step-visual{height:150px}
 }
+
+/* Trust wall, image steps and reference-style graphic */
+.trust-title strong{font-weight:900;color:#202020}
+.trust-marquee{overflow:hidden;margin-top:24px;mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
+.trust-track{display:flex;width:max-content;align-items:center;gap:58px;animation:trust-slide 30s linear infinite}
+.trust-track span{width:118px;height:38px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;opacity:.65;filter:grayscale(1)}
+.trust-track img{max-width:108px;max-height:28px;object-fit:contain}
+@keyframes trust-slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.trust-marquee:hover .trust-track{animation-play-state:paused}
+.step-visual.photo{overflow:hidden;padding:0;background:#fafafa}
+.step-visual.photo img{width:100%;height:100%;display:block;object-fit:cover}
+.reference-graphic{position:relative;width:min(900px,100%);height:190px;margin-top:30px;overflow:hidden;border:1px solid #e6e6e6;border-radius:16px;background:linear-gradient(180deg,#fbfffd,#f4f7f6)}
+.graphic-window{position:absolute;left:7%;right:7%;top:22px;bottom:20px;border:1px solid #d8dfdc;border-radius:12px;background:#fff;box-shadow:0 12px 35px rgba(0,0,0,.05);overflow:hidden}
+.graphic-toolbar{height:28px;border-bottom:1px solid #e9eeec;display:flex;align-items:center;gap:6px;padding:0 10px}
+.graphic-toolbar i{width:6px;height:6px;border-radius:50%;background:#c8d0cd}
+.graphic-chart{position:absolute;left:24px;right:24px;bottom:18px;top:45px;display:flex;align-items:flex-end;gap:18px;border-bottom:1px solid #dfe5e3}
+.graphic-chart span{display:block;flex:1;max-width:50px;height:var(--h,60%);border-radius:6px 6px 0 0;background:#9dd6c4;opacity:.72}
+.graphic-chart span:nth-child(1){--h:34%}.graphic-chart span:nth-child(2){--h:52%}.graphic-chart span:nth-child(3){--h:43%}.graphic-chart span:nth-child(4){--h:68%}.graphic-chart span:nth-child(5){--h:61%}.graphic-chart span:nth-child(6){--h:82%}.graphic-chart span:nth-child(7){--h:73%}
+.graphic-orbit{position:absolute;width:130px;height:50px;right:13%;top:52px;border:1px solid #73c5aa;border-radius:50%;transform:rotate(-16deg);opacity:.35}
+@media(max-width:900px){.trust-track{gap:40px}.trust-track span{width:95px}.reference-graphic{height:160px}}
+@media(max-width:620px){.trust-track{gap:28px}.trust-track span{width:82px}.trust-track img{max-width:80px;max-height:22px}.reference-graphic{height:140px}.graphic-chart{gap:9px}}
+@media(prefers-reduced-motion:reduce){.trust-track{animation:none}}
