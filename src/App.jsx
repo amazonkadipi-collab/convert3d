@@ -157,7 +157,7 @@ function Home(){
         <div className="wrap">
           <div className="trust-title">Built for creators, CAD teams and 3D workflows</div>
           <div className="trust-logos">
-            {["80 Level","Adidas","Amazon","Berkeley","BMW","Bosch","CGChannel","EA","Foster + Partners","Google","NVIDIA","RISD","Siemens","Walmart"].map(x=><span key={x}>{x}</span>)}
+            {["CAD","3D Design","Game Assets","Architecture","Manufacturing","Product Design","Web 3D","Realtime","Animation","Visualization","Engineering","Digital Twins"].map(x=><span key={x}>{x}</span>)}
           </div>
         </div>
       </section>
