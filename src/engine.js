@@ -11,8 +11,9 @@ import {OBJExporter} from "three/addons/exporters/OBJExporter.js";
 import {STLExporter} from "three/addons/exporters/STLExporter.js";
 import {PLYExporter} from "three/addons/exporters/PLYExporter.js";
 import {GLTFExporter} from "three/addons/exporters/GLTFExporter.js";
+import {USDLoader} from "three/addons/loaders/USDLoader.js";
 
-const localInputs=new Set(["obj","stl","ply","fbx","gltf","glb","dae","3mf","3ds"]);
+const localInputs=new Set(["obj","stl","ply","fbx","gltf","glb","dae","3mf","3ds","usd","usda","usdc","usdz"]);
 const cadInputs=new Set(["step","stp","iges","igs","brep"]);
 
 function normalizeRoot(root){
@@ -38,6 +39,21 @@ function fromOcct(result){
   }
   return root;
 }
+let assimpPromise=null;
+async function loadAssimp(){
+  if(!assimpPromise){const mod=await import("assimpjs");assimpPromise=mod.default?mod.default():mod();}
+  return assimpPromise;
+}
+async function parseAssimp(file){
+  const ajs=await loadAssimp();
+  const list=new ajs.FileList();
+  list.AddFile(file.name,new Uint8Array(await file.arrayBuffer()));
+  const result=ajs.ConvertFileList(list,"glb2");
+  if(!result.IsSuccess()||result.FileCount()===0)throw new Error("Assimp could not import this format.");
+  const out=result.GetFile(0).GetContent();
+  const loader=new GLTFLoader();
+  return new Promise((resolve,reject)=>loader.parse(out.buffer.slice(out.byteOffset,out.byteOffset+out.byteLength),"",g=>resolve(normalizeRoot(g.scene)),reject));
+}
 let occtPromise=null;
 async function loadOcct(){
   if(!occtPromise){
@@ -62,6 +78,7 @@ async function parseLocal(file,ext){
   if(ext==="dae") return normalizeRoot(new ColladaLoader().parse(text(),"").scene);
   if(ext==="3mf") return normalizeRoot(new ThreeMFLoader().parse(bytes));
   if(ext==="3ds") return normalizeRoot(new TDSLoader().parse(bytes,""));
+  if(ext==="usd"||ext==="usda"||ext==="usdc"||ext==="usdz"){const loader=new USDLoader();return new Promise((resolve,reject)=>loader.parse(bytes,"",g=>resolve(normalizeRoot(g)),reject));}
   if(ext==="gltf"||ext==="glb"){
     const loader=new GLTFLoader();
     return new Promise((resolve,reject)=>loader.parse(bytes,"",g=>resolve(normalizeRoot(g.scene)),reject));
@@ -72,7 +89,7 @@ export async function loadModel(file){
   const ext=file.name.split(".").pop()?.toLowerCase()||"";
   if(cadInputs.has(ext)) return {object:await parseCad(file,ext),source:ext,engine:"OpenCascade WASM"};
   if(localInputs.has(ext)) return {object:await parseLocal(file,ext),source:ext,engine:"Three.js browser parser"};
-  throw new Error("Browser engine is not available for ."+ext+" yet. Configure a server conversion API for this format.");
+  try { return {object:await parseAssimp(file),source:ext,engine:"Assimp WASM browser importer"}; } catch (e) { throw new Error("Browser engine could not import ."+ext+". Configure a server conversion API for this format."); }
 }
 function collect(object){const root=new THREE.Group();root.add(object.clone(true));root.updateMatrixWorld(true);return root;}
 export async function exportModel(object,target){
