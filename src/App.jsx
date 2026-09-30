@@ -26,7 +26,7 @@ function useSEO(title,description,path){
     m.content=description;
     let canonical=document.querySelector('link[rel="canonical"]');
     if(!canonical){canonical=document.createElement("link");canonical.rel="canonical";document.head.appendChild(canonical)}
-    canonical.href="https://convert3d.vercel.app"+(path||window.location.pathname);
+    canonical.href="https://converts3d.vercel.app"+(path||window.location.pathname);
   },[title,description,path]);
 }
 
@@ -38,11 +38,19 @@ function Brand(){
 }
 
 function Header(){
+  const links=[
+    ["/convert","Convert Model"],
+    ["/compress","Compress"],
+    ["/render-model","Render"],
+    ["/view","View"],
+    ["/image-to-3d","Image to 3D"]
+  ];
   return <header className="site-header">
     <div className="wrap nav">
       <Brand/>
       <nav className="top-links" aria-label="Primary navigation">
-        <NavLink to="/convert" className={({isActive})=>isActive?"top-link active":"top-link"}>Convert Model</NavLink>
+        {links.map(([to,labelText])=><NavLink key={to} to={to} className={({isActive})=>isActive?"top-link active":"top-link"}>{labelText}</NavLink>)}
+        <Link className="top-link" to="/about">Log in</Link>
       </nav>
       <Link className="header-cta" to="/convert">Convert Model</Link>
     </div>
@@ -75,8 +83,7 @@ function Uploader({accept,onFiles,labelText="Select 3D model files"}){
     <div className="upload-arrow">↑</div>
     <h3>{labelText}</h3>
     <p>or drop files</p>
-    <button className="select-btn" type="button" onClick={()=>ref.current?.click()}>Select 3D model files</button>
-    <div className="privacy-badge">✓ Privacy Protected</div>
+    <div className="privacy-badge">✓ Privacy Protected <span>• WebMCP ready</span></div>
   </div>
 }
 
@@ -94,7 +101,7 @@ async function serverConvert(file,output){
   return {blob:new Blob([await response.arrayBuffer()],{type:response.headers.get("content-type")||"application/octet-stream"}),format,processing:response.headers.get("x-convert3d-processing")||"server"};
 }
 
-function Converter({from,to}){
+function Converter({from,to,showFormatLine=true}){
   const [files,setFiles]=useState([]); const [out,setOut]=useState(to||"obj"); const [busy,setBusy]=useState(false); const [object,setObject]=useState(null); const [engine,setEngine]=useState(""); const [error,setError]=useState(""); const [done,setDone]=useState(0);
   const allowedOutputs=browserSupportedOutputs.includes("usdz")?[...browserSupportedOutputs]:[...browserSupportedOutputs,"usdz"];
   const selectFiles=async next=>{setFiles(next);setDone(0);setError("");setObject(null);setEngine("");if(next[0]){try{const r=await loadModel(next[0]);setObject(r.object);setEngine(r.engine)}catch(e){setError(e?.message||"Unable to read this file.")}}};
@@ -120,7 +127,7 @@ function Converter({from,to}){
     finally{setBusy(false)}
   };
   return <div className="converter-card">
-    <div className="format-line"><b>{from?label(from):"Any 3D model"}</b><span>→</span><b>{label(out)}</b></div>
+    {showFormatLine&&<div className="format-line"><b>{from?label(from):"Any 3D model"}</b><span>→</span><b>{label(out)}</b></div>}
     <Uploader onFiles={selectFiles}/>
     {object&&<ModelCanvas object={object}/>}
     {files.length>0&&<div className="file-list">{files.map((f,i)=><div className="file-row" key={f.name+i}><span>{f.name} · {(f.size/1048576).toFixed(2)} MB</span><button type="button" onClick={()=>selectFiles(files.filter((_,n)=>n!==i))}>×</button></div>)}</div>}
@@ -148,7 +155,7 @@ function Home(){
             <Link className="primary-btn" to="/convert">Convert Model</Link>
             <a className="secondary-btn" href="https://www.youtube.com/" target="_blank" rel="noreferrer">Watch a video</a>
           </div>
-          <Converter/>
+          <Converter showFormatLine={false}/>
           <SampleModels/>
         </div>
       </section>
@@ -169,7 +176,10 @@ function Home(){
             <Link to="/convert">See all</Link>
           </div>
           <div className="format-grid">
-            {formats.slice(0,18).map(([k,n])=><Link to={"/convert/"+k} key={k} className="format-item"><span>{k}.{k}</span><b>{n}</b></Link>)}
+            {["step","stp","sldprt","amf","ifc","obj","fbx","stl","gcode","nc","3dm","glb","usd","usda","usdz","usdc","sldasm","max"].map(k=>{
+              const f=formats.find(x=>x[0]===k)||[k,k,k];
+              return <Link to={"/convert/"+k} key={k} className="format-item"><span>.{k}</span><b>{f[2]||f[1]}</b></Link>
+            })}
           </div>
           <div className="copy-block">
             <h3>Free online 3D model converter software</h3>
