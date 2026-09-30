@@ -112,7 +112,7 @@ export async function exportModel(object,target){
 export const browserSupportedInputs=[...localInputs,...cadInputs];
 export async function compressModel(object,quality="balanced"){
   const root=object.clone(true);
-  const ratio=quality==="small"?.35:quality==="high"?.78:.55;
+  const ratio=quality==="high"?.2:quality==="small"?.65:.45;
   let changed=false;
   const jobs=[];
   root.traverse(o=>{
