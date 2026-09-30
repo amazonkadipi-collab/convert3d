@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://convert3d.vercel.app/sitemap.xml
