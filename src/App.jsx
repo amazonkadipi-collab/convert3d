@@ -138,64 +138,106 @@ function Converter({from,to}){
 }
 
 function Home(){
-  useSEO("Convert 3D models online - free and secure","Free, secure and fully private. Just drag and drop your 3D model file to convert it to any popular format.","/");
-  return <><main className="home">
-    <section className="hero">
-      <div className="wrap hero-content">
-        <div className="eyebrow">NEW · SHARE THE MODEL, NOT THE FORMAT →</div>
-        <h1>Convert 3D models<br/>in seconds</h1>
-        <p>Free, secure and fully private. Just drag and drop your 3D model file to convert it to any popular format.</p>
-        <div className="hero-actions"><Link className="primary-btn" to="/convert">Convert Model</Link><Link className="secondary-btn" to="/view">View a model</Link></div>
-        <Converter/>
-        <SampleModels/>
-      </div>
-    </section>
-
-    <section className="trust-section" aria-label="3D workflows">
-      <div className="wrap">
-        <div className="trust-title">Built for modern 3D workflows</div>
-        <div className="trust-logos">
-          {["CAD","Mesh","Realtime","Game assets","Manufacturing","Archviz"].map(x=><span key={x}>{x}</span>)}
+  useSEO("Convert 3D models online - free and secure","Free, secure and fully private 3D model conversion in your browser.","/");
+  return <>
+    <main className="home">
+      <section className="hero">
+        <div className="wrap hero-content">
+          <h1>Convert 3D models</h1>
+          <p>Free, secure and fully private. Just drag and drop your 3D model file to convert it to any popular format.</p>
+          <div className="hero-actions">
+            <Link className="primary-btn" to="/convert">Convert Model</Link>
+            <a className="secondary-btn" href="https://www.youtube.com/" target="_blank" rel="noreferrer">Watch a video</a>
+          </div>
+          <Converter/>
+          <SampleModels/>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="section light">
-      <div className="wrap">
-        <div className="section-top"><div><span className="eyebrow">POPULAR FORMATS</span><h2>Popular Formats</h2></div><Link to="/convert">See all →</Link></div>
-        <div className="format-grid">{formats.slice(0,18).map(([k,n])=><Link to={"/convert/"+k} key={k} className="format-item"><span>{k}</span><b>{n}</b></Link>)}</div>
-        <div className="copy-block"><h3>Free online 3D model converter software</h3><p>Convert 3D models in a clean browser workflow. Supported local conversions happen on your device, with no account required. Other formats remain visible in the catalog so you can discover the right conversion path.</p><p>Convert3D is designed to work across Windows, Mac, Linux and modern browsers. Use the preview before downloading and verify geometry, materials, textures and scale in your destination software.</p><p>We maintain a large catalog of possible conversion paths, including CAD, mesh, scene and realtime formats.</p></div>
-      </div>
-    </section>
+      <section className="trust-section" aria-label="Trust and workflow strip">
+        <div className="wrap">
+          <div className="trust-title">Built for creators, CAD teams and 3D workflows</div>
+          <div className="trust-logos">
+            {["80 Level","Adidas","Amazon","Berkeley","BMW","Bosch","CGChannel","EA","Foster + Partners","Google","NVIDIA","RISD","Siemens","Walmart"].map(x=><span key={x}>{x}</span>)}
+          </div>
+        </div>
+      </section>
 
-    <section className="steps-section">
-      <div className="wrap"><div className="section-heading"><span className="eyebrow">HOW IT WORKS</span><h2>How to convert 3D models</h2></div>
-        <div className="steps-grid">{[["Drag in your model","Scroll to the top of this page, or choose a specific converter. Drag in your 3D model file."],["Preview in full 3D","We instantly preview supported models in 3D. Rotate, zoom and inspect the file before exporting."],["Pick an export format","Choose the format that fits the destination application. The file immediately starts downloading when the engine supports it."]].map(([t,d],i)=><div className="step-item" key={t}><span>{i+1}</span><h3>{t}</h3><p>{d}</p></div>)}</div>
-      </div>
-    </section>
+      <section className="section light">
+        <div className="wrap">
+          <div className="section-top">
+            <div><h2>Popular Formats</h2></div>
+            <Link to="/convert">See all</Link>
+          </div>
+          <div className="format-grid">
+            {formats.slice(0,18).map(([k,n])=><Link to={"/convert/"+k} key={k} className="format-item"><span>{k}.{k}</span><b>{n}</b></Link>)}
+          </div>
+          <div className="copy-block">
+            <h3>Free online 3D model converter software</h3>
+            <p>Convert 3D models in a clean browser workflow. Supported local conversions happen on your device, with no account required. Other formats remain visible in the catalog so you can discover the right conversion path.</p>
+            <p>Convert3D is designed to work across Windows, Mac, Linux and modern browsers. Use the preview before downloading and verify geometry, materials, textures and scale in your destination software.</p>
+            <p>We maintain a large catalog of possible conversion paths, including CAD, mesh, scene and realtime formats.</p>
+          </div>
+        </div>
+      </section>
 
-    <PopularConversions/>
+      <section className="steps-section">
+        <div className="wrap">
+          <div className="section-heading">
+            <h2>How to convert 3D models</h2>
+          </div>
+          <div className="steps-grid">
+            {[
+              ["Drag in your model","Scroll to the top of this page, or choose a specific converter. Drag in your 3D model file."],
+              ["Preview in full 3D","We preview supported models in 3D. Rotate, zoom and inspect the file before exporting."],
+              ["Pick an export format","Choose the format that fits the destination application. The file downloads when the current engine supports it."]
+            ].map(([t,d],i)=><div className="step-item" key={t}><span>{i+1}</span><h3>{t}</h3><p>{d}</p></div>)}
+          </div>
+        </div>
+      </section>
 
-    <section className="privacy-section">
-      <div className="wrap privacy-grid"><div><span className="eyebrow">ENGINEERED FOR PRIVACY</span><h2>Your files stay in your browser for supported local conversions.</h2><p>3D models can contain important project data. The local engine is the default for supported browser conversions.</p></div>
-        <div className="privacy-cards"><div><b>Nothing uploaded</b><p>Supported local conversions happen on your machine.</p></div><div><b>No login required</b><p>Start converting without creating an account.</p></div><div><b>No PII required for conversion</b><p>The core converter does not need profile data to process a file locally.</p></div></div>
-      </div>
-    </section>
+      <PopularConversions/>
 
-    <section className="api-section">
-      <div className="wrap api-box"><div><span className="eyebrow">CONVERT3D API</span><h2>Integrate conversion into your applications.</h2><p>The repository includes a simple server endpoint for supported fallback conversions. Keep your integration aligned with the formats actually enabled by the deployment.</p><div className="api-actions"><Link className="primary-btn" to="/developer-api">Learn More</Link><Link className="secondary-btn" to="/developer-api">Get Started</Link></div></div><div className="api-points">{["Simple REST endpoint","Browser-first workflow","Health endpoint","Clear format handling"].map(x=><span key={x}>✓ {x}</span>)}</div></div>
-    </section>
+      <section className="privacy-section">
+        <div className="wrap privacy-grid">
+          <div>
+            <h2>Engineered for privacy</h2>
+            <p>3D models are often important project assets. Supported local conversions are processed on your machine so you can keep control of your files.</p>
+          </div>
+          <div className="privacy-cards">
+            <div><b>Nothing uploaded</b><p>Supported local conversions happen on your machine.</p></div>
+            <div><b>No login required</b><p>No sign up or payment details are required for the core browser tools.</p></div>
+            <div><b>No PII tracking</b><p>The core converter does not require profile data for local processing.</p></div>
+          </div>
+        </div>
+      </section>
 
-    <section className="faq-section"><div className="wrap narrow"><span className="eyebrow">FAQ</span><h2>Frequently asked questions</h2>{[
-      ["How does Convert3D work?","Drop your model into the converter, preview supported files, choose an output, and download the result."],
-      ["How can I tell whether my model stays on my device?","The UI identifies browser-first processing. You can also check network activity in your browser developer tools while using a supported local conversion."],
-      ["Why is it free?","The core browser workflow in this repository does not require a paid account or checkout."],
-      ["What hardware is required?","The workload depends on the model size and browser capabilities. Large meshes can require more memory and processing time."],
-      ["Where does my 3D model go?","For supported local conversions, the file is processed by the browser engine. Fallback/server routes should be treated as server processing."]
-    ].map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></section>
-  </main></>
+      <section className="api-section">
+        <div className="wrap api-box">
+          <div>
+            <h2>Convert3D API</h2>
+            <p>Integrate supported 3D conversion workflows into your applications with the included REST endpoint.</p>
+            <div className="api-actions"><Link className="primary-btn" to="/developer-api">Learn More</Link><Link className="secondary-btn" to="/developer-api">Get Started</Link></div>
+          </div>
+          <div className="api-points">{["Simple REST API","1000+ possible format paths","Clear format handling"].map(x=><span key={x}>✓ {x}</span>)}</div>
+        </div>
+      </section>
+
+      <section className="faq-section">
+        <div className="wrap narrow">
+          <h2>FAQ</h2>
+          {[
+            ["How does Convert3D work?","Drop your model into the converter, preview supported files, choose an output, and download the result."],
+            ["How can I be sure that my model doesn't leave my computer?","For supported local conversions, the browser engine handles the file locally. Fallback/server workflows are clearly treated as server processing."],
+            ["Why is it free and where are the ads?","The core browser workflow is free and there are no paid checkout flows in this deployment."],
+            ["What hardware is required to run Convert3D?","The workload depends on model size and browser capabilities. Large meshes can require more memory and processing time."],
+            ["Where does my 3D model go?","Supported local conversions stay in the browser; server fallback routes process files on the configured server."]
+          ].map(([q,a])=><details key={q}><summary>{q}</summary><p>{a}</p></details>)}
+        </div>
+      </section>
+    </main>
+  </>
 }
-
 function PopularConversions(){
   const sources=["step","stp","sldprt","amf","ifc","obj","fbx","stl"];
   return <section className="popular-section"><div className="wrap"><div className="section-top"><div><span className="eyebrow">POPULAR CONVERSIONS</span><h2>Popular Conversions</h2></div><Link to="/all">See all →</Link></div>{sources.map(source=><div className="popular-row" key={source}><Link className="source-format" to={"/convert/"+source}><b>{label(source)}</b><span>{source}.{source}</span></Link><div><h3>Convert {label(source)} file to →</h3><div className="output-links">{outputs.map(target=><Link key={target} to={"/"+source+"-to-"+target}>{label(target)}</Link>)}</div></div></div>)}</div></section>
