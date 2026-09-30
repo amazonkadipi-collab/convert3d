@@ -12,6 +12,7 @@ import {STLExporter} from "three/addons/exporters/STLExporter.js";
 import {PLYExporter} from "three/addons/exporters/PLYExporter.js";
 import {GLTFExporter} from "three/addons/exporters/GLTFExporter.js";
 import {USDLoader} from "three/addons/loaders/USDLoader.js";
+import {USDZExporter} from "three/addons/exporters/USDZExporter.js";
 import {SimplifyModifier} from "three/addons/modifiers/SimplifyModifier.js";
 
 const localInputs=new Set(["obj","stl","ply","fbx","gltf","glb","dae","3mf","3ds","usd","usda","usdc","usdz"]);
@@ -100,7 +101,7 @@ export async function exportModel(object,target){
   if(target==="ply"){
     return new Promise((resolve,reject)=>new PLYExporter().parse(root,result=>resolve({blob:new Blob([result],{type:"application/octet-stream"}),ext:"ply",mime:"application/octet-stream"}),{binary:true}));
   }
-  if(target==="gltf"||target==="glb"){
+  if(target==="usdz"){\n    const exporter=new USDZExporter();\n    const data=await exporter.parse(root);\n    return {blob:new Blob([data],{type:"model/vnd.usdz+zip"}),ext:"usdz",mime:"model/vnd.usdz+zip"};\n  }\n  if(target==="gltf"||target==="glb"){
     const exporter=new GLTFExporter();
     return new Promise((resolve,reject)=>exporter.parse(root,result=>{
       if(target==="glb") return resolve({blob:new Blob([result],{type:"model/gltf-binary"}),ext:"glb",mime:"model/gltf-binary"});
@@ -163,4 +164,4 @@ export async function compressModel(object,quality="balanced"){
   const result=await exportModel(root,"glb");
   return {...result,changed};
 }
-export const browserSupportedOutputs=["obj","stl","ply","gltf","glb"];
+export const browserSupportedOutputs=["obj","stl","ply","gltf","glb","usdz"];
