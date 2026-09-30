@@ -101,7 +101,12 @@ export async function exportModel(object,target){
   if(target==="ply"){
     return new Promise((resolve,reject)=>new PLYExporter().parse(root,result=>resolve({blob:new Blob([result],{type:"application/octet-stream"}),ext:"ply",mime:"application/octet-stream"}),{binary:true}));
   }
-  if(target==="usdz"){\n    const exporter=new USDZExporter();\n    const data=await exporter.parse(root);\n    return {blob:new Blob([data],{type:"model/vnd.usdz+zip"}),ext:"usdz",mime:"model/vnd.usdz+zip"};\n  }\n  if(target==="gltf"||target==="glb"){
+  if(target==="usdz"){
+    const exporter=new USDZExporter();
+    const data=await exporter.parse(root);
+    return {blob:new Blob([data],{type:"model/vnd.usdz+zip"}),ext:"usdz",mime:"model/vnd.usdz+zip"};
+  }
+  if(target==="gltf"||target==="glb"){
     const exporter=new GLTFExporter();
     return new Promise((resolve,reject)=>exporter.parse(root,result=>{
       if(target==="glb") return resolve({blob:new Blob([result],{type:"model/gltf-binary"}),ext:"glb",mime:"model/gltf-binary"});
