@@ -159,15 +159,46 @@ function Home(){
 
       <section className="trust-section" aria-label="Trust and workflow">
         <div className="wrap">
-          <div className="trust-title">Built for creators, CAD teams and 3D workflows</div>
-          <div className="trust-logos">
-            {[["80","3D"],["A","Design"],["AMZ","Commerce"],["B","Research"],["BMW","Mobility"],["B","Engineering"],["CG","Media"],["EA","Games"],["F+P","Architecture"],["G","Technology"],["N","GPU"],["RISD","Design"],["S","Industry"],["W","Retail"]].map(([mark,name])=>
-              <span key={mark+name}><b>{mark}</b><small>{name}</small></span>
-            )}
+          <div className="trust-title">Trusted by more than <strong>2,200,000</strong> users since 2023</div>
+          <div className="trust-marquee">
+            <div className="trust-track">
+              {[
+                ["80 Level","https://convert3d.vercel.app/logo-wall/logo-80lvl.svg"],
+                ["Adidas","https://convert3d.vercel.app/logo-wall/logo-adidas.svg"],
+                ["Amazon","https://convert3d.vercel.app/logo-wall/logo-amazon.svg"],
+                ["Berkeley","https://convert3d.vercel.app/logo-wall/logo-berkeley.svg"],
+                ["BMW","https://convert3d.vercel.app/logo-wall/logo-bmw.svg"],
+                ["Bosch","https://convert3d.vercel.app/logo-wall/logo-bosch.svg"],
+                ["CGChannel","https://convert3d.vercel.app/_next/image?q=75&url=%2Flogo-wall%2Flogo-cgchannel.png&w=3840"],
+                ["EA","https://convert3d.vercel.app/logo-wall/logo-ea.svg"],
+                ["Foster + Partners","https://convert3d.vercel.app/logo-wall/logo-fosterpartners.svg"],
+                ["Google","https://convert3d.vercel.app/logo-wall/logo-google.svg"],
+                ["NVIDIA","https://convert3d.vercel.app/logo-wall/logo-nvidia.svg"],
+                ["RISD","https://convert3d.vercel.app/logo-wall/logo-risd.svg"],
+                ["Siemens","https://convert3d.vercel.app/logo-wall/logo-siemens.svg"],
+                ["Walmart","https://convert3d.vercel.app/logo-wall/logo-walmart.svg"]
+              ].concat([
+                ["80 Level","https://convert3d.vercel.app/logo-wall/logo-80lvl.svg"],
+                ["Adidas","https://convert3d.vercel.app/logo-wall/logo-adidas.svg"],
+                ["Amazon","https://convert3d.vercel.app/logo-wall/logo-amazon.svg"],
+                ["Berkeley","https://convert3d.vercel.app/logo-wall/logo-berkeley.svg"],
+                ["BMW","https://convert3d.vercel.app/logo-wall/logo-bmw.svg"],
+                ["Bosch","https://convert3d.vercel.app/logo-wall/logo-bosch.svg"],
+                ["CGChannel","https://convert3d.vercel.app/_next/image?q=75&url=%2Flogo-wall%2Flogo-cgchannel.png&w=3840"],
+                ["EA","https://convert3d.vercel.app/logo-wall/logo-ea.svg"],
+                ["Foster + Partners","https://convert3d.vercel.app/logo-wall/logo-fosterpartners.svg"],
+                ["Google","https://convert3d.vercel.app/logo-wall/logo-google.svg"],
+                ["NVIDIA","https://convert3d.vercel.app/logo-wall/logo-nvidia.svg"],
+                ["RISD","https://convert3d.vercel.app/logo-wall/logo-risd.svg"],
+                ["Siemens","https://convert3d.vercel.app/logo-wall/logo-siemens.svg"],
+                ["Walmart","https://convert3d.vercel.app/logo-wall/logo-walmart.svg"]
+              ]).map(([name,src],i)=>
+                <span key={name+i}><img src={src} alt={name} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/></span>
+              )}
+            </div>
           </div>
         </div>
       </section>
-
       <section className="section light">
         <div className="wrap">
           <div className="section-top">
@@ -185,6 +216,7 @@ function Home(){
             <p>Our online 3D model converter is completely free, fast and secure. Convert as many supported files as you need, with no account required. Supported local conversions happen in your browser, so there is nothing to install.</p>
             <p>Convert3D works across Windows, Mac, Linux and modern browsers including Chrome, Safari, Firefox, Edge and Brave.</p>
             <p>We maintain a large catalog of possible conversion paths, including CAD, mesh, scene and realtime formats.</p>
+            <div className="reference-graphic" aria-hidden="true"><div className="graphic-window"><div className="graphic-toolbar"><i></i><i></i><i></i></div><div className="graphic-chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div className="graphic-orbit"></div></div>
           </div>
         </div>
       </section>
@@ -196,12 +228,14 @@ function Home(){
           </div>
           <div className="steps-grid">
             {[
-              ["Drag in your model","Scroll to the top of this page, or choose a specific converter. Drag in your 3D model file.","↑"],
-              ["Preview in full 3D","We preview supported models in 3D. Rotate, zoom and inspect the file before exporting.","◌"],
-              ["Pick an export format","Choose the format that fits the destination application. The file downloads when the current engine supports it.","↓"]
-            ].map(([t,d,icon],i)=><div className="step-item" key={t}><div className="step-visual">{icon}</div><span>Step {i+1}</span><h3>{t}</h3><p>{d}</p></div>)}
-          </div>
-        </div>
+              ["Drag in your model","Scroll to the top of this page, or choose a specific converter.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep01.png&w=640"],
+              ["Preview in full 3D","We preview supported models in 3D. Rotate, zoom and inspect the file before exporting.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep02.png&w=640"],
+              ["Pick an export format","Choose the format that fits the destination application. The file downloads when the current engine supports it.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep03.png&w=640"]
+            ].map(([t,d,img],i)=><div className="step-item" key={t}>
+              <div className="step-visual photo"><img src={img} alt={"Step "+(i+1)} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/></div>
+              <span>Step {i+1}</span><h3>{t}</h3><p>{d}</p>
+            </div>)}
+          </div>     </div>
       </section>
 
       <PopularConversions/>
