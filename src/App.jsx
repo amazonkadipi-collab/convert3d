@@ -151,6 +151,15 @@ function Home(){
       </div>
     </section>
 
+    <section className="trust-section" aria-label="3D workflows">
+      <div className="wrap">
+        <div className="trust-title">Built for modern 3D workflows</div>
+        <div className="trust-logos">
+          {["CAD","Mesh","Realtime","Game assets","Manufacturing","Archviz"].map(x=><span key={x}>{x}</span>)}
+        </div>
+      </div>
+    </section>
+
     <section className="section light">
       <div className="wrap">
         <div className="section-top"><div><span className="eyebrow">POPULAR FORMATS</span><h2>Popular Formats</h2></div><Link to="/convert">See all →</Link></div>
