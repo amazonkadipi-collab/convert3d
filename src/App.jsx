@@ -50,7 +50,7 @@ function Header(){
       <Brand/>
       <nav className="top-links" aria-label="Primary navigation">
         {links.map(([to,labelText])=><NavLink key={to} to={to} className={({isActive})=>isActive?"top-link active":"top-link"}>{labelText}</NavLink>)}
-        <Link className="top-link" to="/about">Log in</Link>
+        <Link className="top-link" to="/login">Log in</Link>
       </nav>
       <Link className="header-cta" to="/convert">Convert Model</Link>
     </div>
@@ -327,6 +327,17 @@ function About(){
   return <PageShell title="About Convert3D" subtitle="A browser-first toolkit for common 3D asset workflows."><div className="about-grid"><div><h2>What is this?</h2><p>Convert3D is a browser-first toolkit for moving between 3D file formats, previewing models, compressing meshes, and documenting common workflows.</p><h2>Can you see my files?</h2><p>Local conversion engines process supported files on your device. When a deployment uses a server fallback, the file is sent to that endpoint instead.</p></div><div className="about-card"><h3>Core principles</h3><p>Clear format intent, privacy-aware processing, fast interfaces, and useful documentation.</p></div></div></PageShell>
 }
 
+function Login(){
+  useSEO("Log in | Convert 3D","Login is optional. Convert3D's free browser tools do not require an account.","/login");
+  return <PageShell title="Log in" subtitle="No account is required to use the free browser tools.">
+    <div className="tool-card">
+      <h2>Continue without an account</h2>
+      <p>Convert, compress, render and view supported 3D files without signing in.</p>
+      <Link className="primary-btn" to="/convert">Convert Model</Link>
+    </div>
+  </PageShell>
+}
+
 function NotFound(){useSEO("Page not found | Convert 3D","The requested Convert3D page does not exist.");return <main className="wrap not-found"><h1>Page not found</h1><Link className="primary-btn" to="/">Back home</Link></main>}
 
 export default function App(){
@@ -334,7 +345,7 @@ export default function App(){
     <Route path="/" element={<Home/>}/><Route path="/convert" element={<Convert/>}/><Route path="/all" element={<All/>}/>
     <Route path="/convert/:format" element={<FormatPage/>}/><Route path="/:pair/app" element={<Pair/>}/><Route path="/:pair" element={<Pair/>}/>
     <Route path="/compress" element={<Tool kind="compress"/>}/><Route path="/render-model" element={<Tool kind="render"/>}/><Route path="/view" element={<Tool kind="view"/>}/>
-    <Route path="/image-to-3d" element={<ImageTo3D/>}/><Route path="/developer-api" element={<API/>}/>
+    <Route path="/image-to-3d" element={<ImageTo3D/>}/><Route path="/login" element={<Login/>}/><Route path="/developer-api" element={<API/>}/>
     <Route path="/posts" element={<Posts/>}/><Route path="/posts/:slug" element={<Post/>}/><Route path="/about/:section?" element={<About/>}/><Route path="*" element={<NotFound/>}/>
   </Routes><Footer/></div>
 }
