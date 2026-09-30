@@ -12,6 +12,7 @@ import {STLExporter} from "three/addons/exporters/STLExporter.js";
 import {PLYExporter} from "three/addons/exporters/PLYExporter.js";
 import {GLTFExporter} from "three/addons/exporters/GLTFExporter.js";
 import {USDLoader} from "three/addons/loaders/USDLoader.js";
+import {SimplifyModifier} from "three/addons/modifiers/SimplifyModifier.js";
 
 const localInputs=new Set(["obj","stl","ply","fbx","gltf","glb","dae","3mf","3ds","usd","usda","usdc","usdz"]);
 const cadInputs=new Set(["step","stp","iges","igs","brep"]);
@@ -109,4 +110,27 @@ export async function exportModel(object,target){
   throw new Error("The "+target.toUpperCase()+" exporter is not enabled yet. Use OBJ, STL, PLY, GLTF or GLB.");
 }
 export const browserSupportedInputs=[...localInputs,...cadInputs];
+export async function compressModel(object,quality="balanced"){
+  const root=object.clone(true);
+  const ratio=quality==="small"?.35:quality==="high"?.78:.55;
+  let changed=false;
+  const jobs=[];
+  root.traverse(o=>{
+    if(!o.isMesh||!o.geometry?.attributes?.position)return;
+    const vertices=o.geometry.attributes.position.count;
+    if(vertices<1200)return;
+    const target=Math.max(200,Math.floor(vertices*ratio));
+    jobs.push((async()=>{
+      try{
+        const modifier=new SimplifyModifier();
+        const next=await modifier.modify(o.geometry,target);
+        next.computeVertexNormals();
+        o.geometry=next;changed=true;
+      }catch{}
+    })());
+  });
+  await Promise.all(jobs);
+  const result=await exportModel(root,"glb");
+  return {...result,changed};
+}
 export const browserSupportedOutputs=["obj","stl","ply","gltf","glb"];
