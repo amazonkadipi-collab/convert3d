@@ -4,12 +4,14 @@ export default async function handler(request,response){
   const base=process.env.CONVERTER_API_URL;
   if(!base) return response.status(503).json({error:"Server conversion provider is not configured. Browser-supported formats can run locally."});
   try{
+    const chunks=[]; for await(const chunk of request) chunks.push(chunk); const body=Buffer.concat(chunks);
     const headers={};
     if(process.env.CONVERTER_API_KEY) headers.Authorization="Bearer "+process.env.CONVERTER_API_KEY;
-    headers["content-type"]=request.headers["content-type"]||"application/octet-stream";
-    const upstream=await fetch(base,{method:"POST",headers,body:request});
+    if(request.headers["content-type"]) headers["content-type"]=request.headers["content-type"];
+    const upstream=await fetch(base,{method:"POST",headers,body});
     response.status(upstream.status);
-    response.setHeader("content-type",upstream.headers.get("content-type")||"application/octet-stream");
+    const type=upstream.headers.get("content-type"); if(type) response.setHeader("content-type",type);
+    const disposition=upstream.headers.get("content-disposition"); if(disposition) response.setHeader("content-disposition",disposition);
     response.send(Buffer.from(await upstream.arrayBuffer()));
   }catch(error){response.status(502).json({error:"Conversion provider request failed.",detail:error instanceof Error?error.message:"Unknown error"});}
 }
