@@ -248,14 +248,52 @@ function ImageTo3D(){
 }
 
 function Pricing(){
-  useSEO("Pricing | Convert 3D","3D conversion plans and capabilities for browser tools and API users.","/pricing");
-  return <PageShell title="3D conversion that fits your budget" subtitle="Start with browser tools, then scale when your workflow needs more capacity.">
-    <div className="pricing-grid"><div className="price-card"><span>Free</span><h2>$0 <small>/month</small></h2><p>Try the browser tools before you subscribe.</p><Link className="primary-btn" to="/convert">Get started</Link><div className="price-list">{["Core browser tools","Local 3D viewing","Local compression","No account required"].map(x=><span key={x}>✓ {x}</span>)}</div></div>
-    <div className="price-card"><span>Pay as you go</span><h2>$18 <small>3 credits</small></h2><p>One-off top-up for conversion credits.</p><Link className="secondary-btn" to="/pricing">View plan</Link><div className="price-list"><span>✓ 3 conversion downloads</span><span>✓ No subscription required</span><span>✓ Top up anytime</span></div></div>
-    <div className="price-card"><span>Pro</span><h2>$29 <small>/month</small></h2><p>Unlimited conversions, compression, and advanced tools.</p><Link className="primary-btn" to="/developer-api">Contact API</Link><div className="price-list">{["Unlimited 3D conversions","Strong compression","50 AI generations / month","AI render and generation tools"].map(x=><span key={x}>✓ {x}</span>)}</div></div></div>
+  useSEO("Pricing | Convert 3D","Free 3D conversion, viewing, compression and browser tools with no paid plans.","/pricing");
+  return <PageShell title="Everything is free" subtitle="Use the Convert3D browser tools without a paid plan, subscription or checkout.">
+    <div className="pricing-grid free-pricing-grid">
+      <div className="price-card free-card">
+        <span>Free</span>
+        <h2>$0 <small>forever</small></h2>
+        <p>All core browser-first tools are available at no cost.</p>
+        <Link className="primary-btn" to="/convert">Start converting</Link>
+        <div className="price-list">
+          {[
+            "3D model conversion on supported formats",
+            "3D model viewer",
+            "3D model rendering to PNG",
+            "Mesh compression to GLB",
+            "Image to 3D relief",
+            "No account required",
+            "No subscription",
+            "No payment details"
+          ].map(x=><span key={x}>✓ {x}</span>)}
+        </div>
+      </div>
+      <div className="price-card free-card">
+        <span>Browser tools</span>
+        <h2>$0 <small>always</small></h2>
+        <p>Files can stay on your device for workflows handled by the local browser engines.</p>
+        <Link className="secondary-btn" to="/view">Open viewer</Link>
+        <div className="price-list">
+          {["Local 3D preview","Wireframe mode","PNG capture","Local mesh processing"].map(x=><span key={x}>✓ {x}</span>)}
+        </div>
+      </div>
+      <div className="price-card free-card">
+        <span>Developer</span>
+        <h2>Free <small>in this repo</small></h2>
+        <p>The included health and conversion endpoints are provided as part of this project.</p>
+        <Link className="secondary-btn" to="/developer-api">Developer API</Link>
+        <div className="price-list">
+          {["POST /api/convert","GET /api/health","No paid checkout in the UI","Clear unsupported-format handling"].map(x=><span key={x}>✓ {x}</span>)}
+        </div>
+      </div>
+    </div>
+    <section className="section free-note">
+      <h2>No paid tier</h2>
+      <p className="lead">This deployment does not sell credits or subscriptions. Actual conversion availability still depends on the browser engine and the selected file format.</p>
+    </section>
   </PageShell>
 }
-
 function API(){
   useSEO("Convert3D API","Developer API information for integrations using the repository conversion endpoint.","/developer-api");
   return <PageShell title="Convert3D API" subtitle="Integrate supported conversion workflows into your own applications."><div className="api-page-grid"><div className="tool-card"><h2>POST /api/convert</h2><pre>multipart/form-data{String.fromCharCode(10)}file = model.step{String.fromCharCode(10)}output = glb</pre><p>Use the endpoint for formats supported by the bundled server engine. Validate the response headers and do not assume unsupported outputs are available.</p></div><div className="api-copy"><h2>Built for developers</h2><p>Simple REST endpoint, health check, and the same browser-first format catalog used by the web interface.</p><Link className="primary-btn" to="/convert">Get Started</Link></div></div></PageShell>
