@@ -55,7 +55,7 @@ function Footer(){
     <div className="wrap footer-grid">
       <div className="footer-brand"><Brand/><p>Free 3D model tools for conversion, compression, rendering and viewing.</p></div>
       <div><b>Company</b><Link to="/posts">Blog</Link><Link to="/about">About</Link></div>
-      <div><b>Tools &amp; API</b><Link to="/convert">Convert</Link><Link to="/compress">Compress</Link><Link to="/render-model">Render</Link><Link to="/view">View</Link><Link to="/image-to-3d">Image to 3D</Link><Link to="/developer-api">Developer API</Link></div>
+      <div><b>Tools &amp; API</b><Link to="/convert">Convert</Link><Link to="/compress">Compress</Link><Link to="/render-model">Render</Link><Link to="/view">View</Link><Link to="/image-to-3d">Image to 3D</Link><Link to="/developer-api">Developer API</Link><Link to="/about">Desktop App</Link><Link to="/developer-api">WebMCP for AI agents</Link></div>
       <div><b>Community</b><a href="https://discord.gg/" target="_blank" rel="noreferrer">Discord</a></div>
     </div>
     <div className="wrap footer-bottom"><span>© 2026 Convert3D</span><span><Link to="/about/privacy">Privacy</Link><Link to="/about/terms">Terms</Link></span></div>
@@ -177,7 +177,7 @@ function Home(){
           <div className="format-grid">
             {["step","stp","sldprt","amf","ifc","obj","fbx","stl","gcode","nc","3dm","glb","usd","usda","usdz","usdc","sldasm","max"].map(k=>{
               const f=formats.find(x=>x[0]===k)||[k,k,k];
-              return <Link to={"/convert/"+k} key={k} className="format-item"><span>{f[1]}</span><b>.{k}</b></Link>
+              return <Link to={"/convert/"+k} key={k} className="format-item"><span>{k}</span><b>.{k}</b></Link>
             })}
           </div>
           <div className="copy-block">
