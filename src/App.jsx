@@ -151,10 +151,6 @@ function Home(){
       </div>
     </section>
 
-    <section className="trust-section">
-      <div className="wrap"><div className="trust-title">Trusted by more than 2,200,000 users since 2023</div><div className="trust-logos">{trust.map(x=><span key={x}>{x}</span>)}</div></div>
-    </section>
-
     <section className="section light">
       <div className="wrap">
         <div className="section-top"><div><span className="eyebrow">POPULAR FORMATS</span><h2>Popular Formats</h2></div><Link to="/convert">See all →</Link></div>
