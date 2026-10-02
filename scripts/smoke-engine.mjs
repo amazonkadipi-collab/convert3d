@@ -1,3 +1,5 @@
+globalThis.requestAnimationFrame=(cb)=>setImmediate(cb);
+
 import * as THREE from "three";
 import {exportModel} from "../src/engine.js";
 
