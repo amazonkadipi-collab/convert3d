@@ -12,8 +12,7 @@ Convert3D provides free web tools with local browser processing for supported co
 - [Compress 3D Models](https://converts3d.vercel.app/compress): Browser-based mesh compression workflow.
 - [Render 3D Models](https://converts3d.vercel.app/render-model): Browser-based model rendering workflow.
 - [View 3D Models](https://converts3d.vercel.app/view): Browser-based model viewer.
-- [Image to 3D](https://converts3d.vercel.app/image-to-3d): Image-derived lightweight 3D relief workflow.
-- [Desktop App](https://converts3d.vercel.app/desktop-app): Desktop app information.
+- [Image to 3D relief](https://converts3d.vercel.app/image-to-3d): Local image-derived 3D relief workflow.
 - [Developer API](https://converts3d.vercel.app/developer-api): REST conversion endpoint documentation.
 - [3D Workflow Guides](https://converts3d.vercel.app/posts): Practical 3D format and workflow guides.
 - [About](https://converts3d.vercel.app/about): Product and data-handling overview.
@@ -22,7 +21,7 @@ Convert3D provides free web tools with local browser processing for supported co
 
 ## Format conversion pages
 
-The site publishes dedicated pages for 80+ source formats at /convert/{format} and conversion paths at /{source}-to-{target}.
+The site publishes a format catalog under /convert/{format}. Current browser export targets are OBJ, STL, PLY, GLTF, GLB and USDZ; the server fallback currently supports GLB only. A catalogued source path may still depend on the bundled parser available for that source format.
 
 - [STEP Converter](https://converts3d.vercel.app/convert/step): STEP CAD conversion page.
 - [STP Converter](https://converts3d.vercel.app/convert/stp): STP/STEP conversion page.
