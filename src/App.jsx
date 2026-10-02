@@ -49,7 +49,7 @@ function Footer(){
     <div className="wrap footer-grid">
       <div><b>Company</b><Link to="/posts">Blog</Link><Link to="/about">About</Link></div>
       <div><b>Tools &amp; API</b><Link to="/convert">Convert</Link><Link to="/compress">Compress</Link><Link to="/render-model">Render</Link><Link to="/view">View</Link><Link to="/desktop-app">Desktop App</Link><Link to="/developer-api">Developer API</Link></div>
-      <div><b>Community</b><a href="https://discord.gg/" target="_blank" rel="noreferrer">Discord</a></div>
+      <div><b>Community</b><a href="https://discord.gg/Q4CjpPMUHu" target="_blank" rel="noreferrer">Discord</a></div>
     </div>
     <div className="wrap footer-bottom"><span>© 2026 Convert3D</span><span><Link to="/about/privacy">Privacy</Link><Link to="/about/terms">Terms</Link></span></div>
   </footer>
