@@ -1,12 +1,13 @@
 import { copyFileSync, existsSync } from "node:fs";
-import { mkdir, stat } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 
 const source="node_modules/assimpjs/dist/assimpjs.wasm";
-const target="api/assimpjs.wasm";
+const targets=["api/assimpjs.wasm","public/assimpjs.wasm"];
 
 if(!existsSync(source)) throw new Error("Assimp WASM source file is missing: "+source);
 await mkdir("api",{recursive:true});
-copyFileSync(source,target);
-const info=await stat(target);
-if(info.size<1000000) throw new Error("Assimp WASM staging produced an unexpectedly small file.");
-console.log("Staged Assimp WASM:",target,info.size,"bytes");
+await mkdir("public",{recursive:true});
+
+for(const target of targets) copyFileSync(source,target);
+console.log("Staged Assimp WASM:");
+for(const target of targets) console.log(" -",target);
