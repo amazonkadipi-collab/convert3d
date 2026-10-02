@@ -1,3 +1,27 @@
+# Convert3D crawler policy
+# Allow search indexing and AI/agent discovery.
 User-agent: *
 Allow: /
-Sitemap: https://convert3d.vercel.app/sitemap.xml
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://converts3d.vercel.app/sitemap.xml
