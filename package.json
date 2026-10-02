@@ -8,7 +8,7 @@
     "build": "node scripts/stage-assimp-wasm.mjs && vite build",
     "preview": "vite preview",
     "test:engine": "node scripts/smoke-engine.mjs",
-    "check": "node scripts/stage-assimp-wasm.mjs && npm run build && npm run test:engine && npm run test:api",
+    "check": "npm run build && npm run test:engine && npm run test:api",
     "test:api": "node scripts/smoke-api.mjs"
   },
   "dependencies": {
