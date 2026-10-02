@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/stage-assimp-wasm.mjs && vite build",
     "preview": "vite preview",
     "test:engine": "node scripts/smoke-engine.mjs",
     "check": "npm run build && npm run test:engine"
