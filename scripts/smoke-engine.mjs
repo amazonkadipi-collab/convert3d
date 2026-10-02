@@ -34,3 +34,12 @@ for(const target of outputs){
   console.log(target+" OK "+result.blob.size+" bytes");
 }
 console.log("All browser exporters passed.");
+
+// Compression integration smoke test: a dense sphere must simplify and still export to a non-empty GLB.
+const dense=new THREE.SphereGeometry(2,40,30);
+const denseMesh=new THREE.Mesh(dense,new THREE.MeshStandardMaterial());
+const compressed=await (await import("../src/engine.js")).compressModel(denseMesh,"small");
+if(!compressed?.changed) throw new Error("Compression did not report a geometry change for a dense test mesh");
+if(!compressed?.blob||compressed.blob.size<=0) throw new Error("Compression returned an empty GLB");
+console.log("compressModel GLB smoke test: OK ("+compressed.blob.size+" bytes)");
+
