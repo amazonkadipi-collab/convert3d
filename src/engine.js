@@ -43,7 +43,11 @@ function fromOcct(result){
 }
 let assimpPromise=null;
 async function loadAssimp(){
-  if(!assimpPromise){const mod=await import("assimpjs");assimpPromise=mod.default?mod.default():mod();}
+  if(!assimpPromise){
+    const mod=await import("assimpjs");
+    const factory=mod.default||mod;
+    assimpPromise=factory({locateFile:(path)=>"/assimpjs.wasm"});
+  }
   return assimpPromise;
 }
 async function parseAssimp(file){
@@ -113,7 +117,7 @@ export async function exportModel(object,target){
       resolve({blob:new Blob([JSON.stringify(result)],{type:"model/gltf+json"}),ext:"gltf",mime:"model/gltf+json"});
     },reject,{binary:target==="glb",embedImages:true,onlyVisible:true}));
   }
-  throw new Error("The "+target.toUpperCase()+" exporter is not enabled yet. Use OBJ, STL, PLY, GLTF or GLB.");
+  throw new Error("The "+target.toUpperCase()+" exporter is not enabled. Supported outputs: OBJ, STL, PLY, GLTF, GLB and USDZ.");
 }
 export async function imageTo3D(file,quality="balanced"){
   const bitmap=await createImageBitmap(file);
@@ -157,12 +161,10 @@ export async function compressModel(object,quality="balanced"){
     if(vertices<1200)return;
     const target=Math.max(200,Math.floor(vertices*ratio));
     jobs.push((async()=>{
-      try{
-        const modifier=new SimplifyModifier();
-        const next=await modifier.modify(o.geometry,target);
-        next.computeVertexNormals();
-        o.geometry=next;changed=true;
-      }catch{}
+      const modifier=new SimplifyModifier();
+      const next=await modifier.modify(o.geometry,target);
+      next.computeVertexNormals();
+      o.geometry=next;changed=true;
     })());
   });
   await Promise.all(jobs);
