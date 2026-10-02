@@ -107,12 +107,12 @@ function Converter({from,to,showFormatLine=true}){
         if(ext===out){downloadBlob(file,file.name);setDone(n=>n+1);continue}
         try{
           const r=object&&files[0]===file?{object,source:ext,engine}:await loadModel(file);
-          const result=await exportModel(r.object,out); const base=file.name.replace(/.[^.]+$/,"");
+          const result=await exportModel(r.object,out); const base=file.name.replace(/\.[^.]+$/,"");
           downloadBlob(result.blob,base+"."+result.ext); setDone(n=>n+1);
         }catch(localError){
           const server=await serverConvert(file,out);
           if(server.format!==out) throw new Error("The selected output format is not available in the current server engine.");
-          downloadBlob(server.blob,file.name.replace(/.[^.]+$/,"")+"."+server.format);
+          downloadBlob(server.blob,file.name.replace(/\.[^.]+$/,"")+"."+server.format);
           setEngine(server.processing); setDone(n=>n+1);
         }
       }
