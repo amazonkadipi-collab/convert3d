@@ -62,7 +62,12 @@ function Footer(){
   </footer>
 }
 function SampleModels(){
-  return <div className="sample-row"><span className="sample-label">No model?<br/><b>Try one of these:</b></span>{sampleModels.map(([name,src])=><div className="sample-card" key={name}><img src={src} alt={name} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/><span>{name}</span></div>)}</div>
+  const links=[
+    ["Damaged Helmet","https://convert3d.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdamaged-helmet.aed11d90.png&w=128&q=75"],
+    ["CAD Motor","https://convert3d.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcad-motor.c9d60b7c.png&w=128&q=75"],
+    ["Submarine","https://convert3d.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsubmarine.f0e16e26.png&w=128&q=75"]
+  ];
+  return <div className="sample-row"><span className="sample-label">No model?<br/><b>Try one of these:</b></span>{links.map(([name,src])=><a className="sample-card" key={name} href={src} target="_blank" rel="noreferrer"><img src={src} alt={name} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/><span>{name}</span></a>)}</div>
 }
 
 function Uploader({accept,onFiles,labelText="Select 3D model files"}){
