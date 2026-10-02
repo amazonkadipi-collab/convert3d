@@ -1,5 +1,25 @@
 globalThis.requestAnimationFrame=(cb)=>setImmediate(cb);
 
+class NodeFileReader {
+  constructor(){ this.result=null; this.onload=null; this.onerror=null; this.onloadend=null; }
+  readAsArrayBuffer(blob){
+    Promise.resolve(blob.arrayBuffer()).then(buffer=>{
+      this.result=buffer;
+      this.onload?.({target:this});
+      this.onloadend?.({target:this});
+    }).catch(error=>this.onerror?.(error));
+  }
+  readAsDataURL(blob){
+    Promise.resolve(blob.arrayBuffer()).then(buffer=>{
+      const type=blob.type||"application/octet-stream";
+      this.result="data:"+type+";base64,"+Buffer.from(buffer).toString("base64");
+      this.onload?.({target:this});
+      this.onloadend?.({target:this});
+    }).catch(error=>this.onerror?.(error));
+  }
+}
+globalThis.FileReader=NodeFileReader;
+
 import * as THREE from "three";
 import {exportModel} from "../src/engine.js";
 
