@@ -43,3 +43,26 @@ if(!compressed?.changed) throw new Error("Compression did not report a geometry 
 if(!compressed?.blob||compressed.blob.size<=0) throw new Error("Compression returned an empty GLB");
 console.log("compressModel GLB smoke test: OK ("+compressed.blob.size+" bytes)");
 
+
+
+// Image-to-3D integration smoke test using the real function with minimal browser API shims.
+globalThis.createImageBitmap=async()=>({close(){}});
+globalThis.document={
+  createElement(tag){
+    if(tag!=="canvas") throw new Error("Unexpected DOM element: "+tag);
+    return {
+      width:0,height:0,
+      getContext(){
+        return {
+          drawImage(){},
+          getImageData(x,y,w,h){ return {data:new Uint8ClampedArray(w*h*4).fill(128)}; }
+        };
+      }
+    };
+  }
+};
+const {imageTo3D}=await import("../src/engine.js");
+const relief=await imageTo3D(new Blob(["image"],{type:"image/png"}),"fast");
+if(!relief?.object?.children?.length) throw new Error("imageTo3D returned no geometry");
+if(!relief.object.children[0].geometry?.attributes?.position) throw new Error("imageTo3D returned invalid geometry");
+console.log("imageTo3D relief smoke test: OK");
