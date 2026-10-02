@@ -5,7 +5,7 @@ import {Link,NavLink,Route,Routes,useParams} from "react-router-dom";
 
 const formats=[["step","STEP","STEP CAD"],["stp","STP","STEP CAD"],["sldprt","SLDPRT","SolidWorks Part"],["sldasm","SLDASM","SolidWorks Assembly"],["slddrw","SLDDRW","SolidWorks Drawing"],["obj","OBJ","Wavefront Object"],["fbx","FBX","Autodesk FBX"],["stl","STL","Stereolithography"],["gltf","GLTF","glTF"],["glb","GLB","glTF Binary"],["usd","USD","Universal Scene Description"],["usda","USDA","Universal Scene Description"],["usdc","USDC","Universal Scene Description"],["usdz","USDZ","Universal Scene Description"],["3dm","3DM","Rhino 3DM"],["max","MAX","3ds Max"],["blend","BLEND","Blender 3D"],["skp","SKP","Sketchup"],["dae","DAE","Collada"],["dwg","DWG","AutoCAD DWG"],["dxf","DXF","AutoCAD DXF"],["3ds","3DS","3ds Max 3DS"],["iges","IGES","Initial Graphics Exchange Specification"],["igs","IGS","Initial Graphics Exchange Specification"],["ply","PLY","Stanford Polygon Library"],["vox","VOX","MagicaVoxel"],["mdl","MDL","Quake I"],["3mf","3MF","3D Manufacturing Format"],["brep","BREP","Boundary Representation"],["smd","SMD","Valve Model"],["lwo","LWO","LightWave"],["bvh","BVH","Biovision BVH"],["x","X","DirectX X"],["rbxm","RBXM","Roblox Model File"],["rbxl","RBXL","Roblox Level File"],["b3d","B3D","BlitzBasic 3D"],["off","OFF","Object File Format"],["md3","MD3","Quake III Mesh"],["ase","ASE","3ds Max ASE"],["scn","SCN","TrueSpace"],["md2","MD2","Quake II"],["ac3d","AC3D","AC3D"],["ac","AC","AC3D"],["ms3d","MS3D","Milkshape 3D"],["cob","COB","TrueSpace"],["vta","VTA","Valve Model"],["raw","RAW","PovRAY Raw"],["ter","TER","Terragen Terrain"],["hmb","HMB","TrueSpace HMB"],["xgl","XGL","XGL"],["zgl","ZGL","XGL"],["lws","LWS","LightWave Scene"],["csm","CSM","CharacterStudio Motion"],["irrmesh","IRRMESH","Irrlicht Mesh"],["irr","IRR","Irrlicht Scene"],["iqm","IQM","Inter-Quake Model"],["mdc","MDC","Return to Castle Wolfenstein"],["md5","MD5","Doom 3"],["m3d","M3D","Model 3D"],["ogex","OGEX","Open Game Engine Exchange"],["x3d","X3D","Extensible 3D"],["q3s","Q3S","Quick3D"],["nff","NFF","Neutral File Format"],["ndo","NDO","Izware Nendo"],["amf","AMF","Additive Manufacturing File Format"],["ifc","IFC","Industry Foundation Classes"],["gcode","GCODE","G-Code"],["nc","NC","G-Code"],["3d","3D","Unreal"],["xml","XML","Mesh XML"],["acc","ACC","ACC"],["amj","AMJ","AMJ"],["ask","ASK","ASK"],["enff","ENFF","ENFF"],["mot","MOT","MOT"],["pmx","PMX","PMX"],["prj","PRJ","PRJ"],["q3o","Q3O","Q3O"],["sib","SIB","SIB"],["uc","UC","UC"],["lxo","LXO","Modo"]];
 
-const outputs=["stp","obj","fbx","stl","3dm","glb","usdz","gltf","skp","dae","dwg","3ds","dxf","ply","3mf","x","rbxm","rbxl"];
+const outputs=["obj","stl","ply","gltf","glb","usdz"];
 const popularPairs=[["step","obj"],["stp","obj"],["sldprt","obj"],["amf","obj"],["ifc","stp"],["obj","fbx"],["fbx","glb"],["stl","glb"],["gcode","stl"],["3dm","obj"]];
 const sampleModels=[
   ["Damaged Helmet","https://convert3d.vercel.app/_next/static/media/damaged-helmet.aed11d90.png"],
@@ -91,7 +91,7 @@ function Footer(){
   return <footer className="footer">
     <div className="wrap footer-grid">
       <div><b>Company</b><Link to="/posts">Blog</Link><Link to="/about">About</Link></div>
-      <div><b>Tools &amp; API</b><Link to="/convert">Convert</Link><Link to="/compress">Compress</Link><Link to="/render-model">Render</Link><Link to="/view">View</Link><Link to="/desktop-app">Desktop App</Link><Link to="/developer-api">Developer API</Link></div>
+      <div><b>Tools &amp; API</b><Link to="/convert">Convert</Link><Link to="/compress">Compress</Link><Link to="/render-model">Render</Link><Link to="/view">View</Link><Link to="/developer-api">Developer API</Link></div>
       <div><b>Community</b><a href="https://discord.gg/Q4CjpPMUHu" target="_blank" rel="noreferrer">Discord</a></div>
     </div>
     <div className="wrap footer-bottom"><span>© 2026 Convert3D</span><span><Link to="/about/privacy">Privacy</Link><Link to="/about/terms">Terms</Link></span></div>
@@ -196,48 +196,17 @@ function Home(){
         </div>
       </section>
 
-      <section className="trust-section" aria-label="Trust and workflow">
+      <section className="trust-section" aria-label="Built with real conversion engines">
         <div className="wrap">
-          <div className="trust-title">Trusted by more than <strong>2,200,000</strong> users since 2023</div>
-          <div className="trust-marquee">
+          <div className="trust-title">Browser-first 3D conversion powered by <strong>Three.js</strong>, <strong>Assimp</strong> and <strong>OpenCascade WASM</strong></div>
+          <div className="trust-marquee factual-tools">
             <div className="trust-track">
-              {[
-                ["80 Level","https://convert3d.vercel.app/logo-wall/logo-80lvl.svg"],
-                ["Adidas","https://convert3d.vercel.app/logo-wall/logo-adidas.svg"],
-                ["Amazon","https://convert3d.vercel.app/logo-wall/logo-amazon.svg"],
-                ["Berkeley","https://convert3d.vercel.app/logo-wall/logo-berkeley.svg"],
-                ["BMW","https://convert3d.vercel.app/logo-wall/logo-bmw.svg"],
-                ["Bosch","https://convert3d.vercel.app/logo-wall/logo-bosch.svg"],
-                ["CGChannel","https://convert3d.vercel.app/_next/image?q=75&url=%2Flogo-wall%2Flogo-cgchannel.png&w=3840"],
-                ["EA","https://convert3d.vercel.app/logo-wall/logo-ea.svg"],
-                ["Foster + Partners","https://convert3d.vercel.app/logo-wall/logo-fosterpartners.svg"],
-                ["Google","https://convert3d.vercel.app/logo-wall/logo-google.svg"],
-                ["NVIDIA","https://convert3d.vercel.app/logo-wall/logo-nvidia.svg"],
-                ["RISD","https://convert3d.vercel.app/logo-wall/logo-risd.svg"],
-                ["Siemens","https://convert3d.vercel.app/logo-wall/logo-siemens.svg"],
-                ["Walmart","https://convert3d.vercel.app/logo-wall/logo-walmart.svg"]
-              ].concat([
-                ["80 Level","https://convert3d.vercel.app/logo-wall/logo-80lvl.svg"],
-                ["Adidas","https://convert3d.vercel.app/logo-wall/logo-adidas.svg"],
-                ["Amazon","https://convert3d.vercel.app/logo-wall/logo-amazon.svg"],
-                ["Berkeley","https://convert3d.vercel.app/logo-wall/logo-berkeley.svg"],
-                ["BMW","https://convert3d.vercel.app/logo-wall/logo-bmw.svg"],
-                ["Bosch","https://convert3d.vercel.app/logo-wall/logo-bosch.svg"],
-                ["CGChannel","https://convert3d.vercel.app/_next/image?q=75&url=%2Flogo-wall%2Flogo-cgchannel.png&w=3840"],
-                ["EA","https://convert3d.vercel.app/logo-wall/logo-ea.svg"],
-                ["Foster + Partners","https://convert3d.vercel.app/logo-wall/logo-fosterpartners.svg"],
-                ["Google","https://convert3d.vercel.app/logo-wall/logo-google.svg"],
-                ["NVIDIA","https://convert3d.vercel.app/logo-wall/logo-nvidia.svg"],
-                ["RISD","https://convert3d.vercel.app/logo-wall/logo-risd.svg"],
-                ["Siemens","https://convert3d.vercel.app/logo-wall/logo-siemens.svg"],
-                ["Walmart","https://convert3d.vercel.app/logo-wall/logo-walmart.svg"]
-              ]).map(([name,src],i)=>
-                <span key={name+i}><img src={src} alt={name} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/></span>
-              )}
+              {["Three.js","Assimp WASM","OpenCascade WASM","GLTFExporter","USDZExporter","OBJExporter","STLExporter","PLYExporter"].concat(["Three.js","Assimp WASM","OpenCascade WASM","GLTFExporter","USDZExporter","OBJExporter","STLExporter","PLYExporter"]).map((name,i)=><span key={name+i} className="engine-badge">{name}</span>)}
             </div>
           </div>
         </div>
       </section>
+
       <section className="section light">
         <div className="wrap">
           <div className="section-top">
@@ -257,7 +226,7 @@ function Home(){
             <h3>Free online 3D model converter software</h3>
             <p>Our online 3D model converter is completely free, fast and secure. You can convert as many files as you want, no limit. All conversions happen in your browser, so there is nothing to install, and your files are not uploaded to any server.</p>
             <p>That also means Convert3D works on any platform, including Windows, Mac, Linux and ChromeOS and browsers like Chrome, Safari, Firefox, Edge and Brave.</p>
-            <p>We support more than 1000+ possible conversions, including tough ones like USDZ and STEP, as well as the most common 3D model formats such as FBX, OBJ, GLTF and DAE.</p>
+            <p>Browser export is available for OBJ, STL, PLY, GLTF, GLB and USDZ. Additional source formats can be imported when the bundled browser parsers support them.</p>
           </div>
         </div>
       </section>
@@ -302,7 +271,7 @@ function Home(){
             <p>Integrate 3D model conversion into your applications. Convert between 1000+ format combinations programmatically with our reliable REST API.</p>
             <div className="api-actions"><Link className="primary-btn" to="/developer-api">Learn More</Link><Link className="secondary-btn" to="/developer-api">Get Started</Link></div>
           </div>
-          <div className="api-points">{["Simple REST API","1000+ possible format combinations","High performance conversion engine","Flexible pricing plans"].map(x=><span key={x}>✓ {x}</span>)}</div>
+          <div className="api-points">{["Multipart REST endpoint","GLB server fallback","Browser-first processing","Explicit capability errors"].map(x=><span key={x}>✓ {x}</span>)}</div>
         </div>
       </section>
 
@@ -359,7 +328,7 @@ function Tool({kind}){
 function ViewerPanel({renderMode=false}){
   const [files,setFiles]=useState([]),[object,setObject]=useState(null),[error,setError]=useState(""),[wireframe,setWireframe]=useState(false),[capture,setCapture]=useState(null);
   const choose=async list=>{setFiles(list);setObject(null);setError("");setCapture(null);try{if(list[0]){const r=await loadModel(list[0]);setObject(r.object)}}catch(e){setError(e?.message||"Unable to load this model.")}};
-  const save=()=>{if(!capture)return;downloadBlob(capture(),(files[0]?.name||"model").replace(/.[^.]+$/,"")+".png")};
+  const save=()=>{if(!capture)return;downloadBlob(capture(),(files[0]?.name||"model").replace(/\.[^.]+$/,"")+".png")};
   return <div className="tool-card"><Uploader onFiles={choose}/>{object&&<ModelCanvas object={object} wireframe={wireframe} onReady={setCapture}/>}<div className="tool-buttons">{!renderMode&&<button className="secondary-btn" onClick={()=>setWireframe(v=>!v)}>{wireframe?"Solid mode":"Wireframe"}</button>}{renderMode&&<button className="primary-btn" onClick={save}>Download PNG</button>}</div>{error&&<div className="error-box">{error}</div>}</div>
 }
 
@@ -367,27 +336,27 @@ function CompressPanel(){
   const [files,setFiles]=useState([]),[object,setObject]=useState(null),[quality,setQuality]=useState("balanced"),[busy,setBusy]=useState(false),[error,setError]=useState(""),[result,setResult]=useState(null);
   const choose=async list=>{setFiles(list);setObject(null);setResult(null);setError("");try{if(list[0]){const r=await loadModel(list[0]);setObject(r.object)}}catch(e){setError(e?.message||"Unable to load this model.")}};
   const run=async()=>{if(!object)return;setBusy(true);setError("");setResult(null);try{setResult(await compressModel(object,quality))}catch(e){setError(e?.message||"Compression failed.")}finally{setBusy(false)}};
-  return <div className="tool-card"><Uploader onFiles={choose}/>{object&&<ModelCanvas object={object}/>}<div className="converter-controls"><label>Compression level<select value={quality} onChange={e=>setQuality(e.target.value)}><option value="high">High quality</option><option value="balanced">Balanced</option><option value="small">Smaller file</option></select></label><button className="primary-btn" disabled={!object||busy} onClick={run}>{busy?"Compressing…":"Compress to GLB"}</button></div>{error&&<div className="error-box">{error}</div>}{result&&<div className="success-box">✓ Compressed GLB ready. <button className="text-link" onClick={()=>downloadBlob(result.blob,(files[0]?.name||"model").replace(/.[^.]+$/,"")+".glb")}>Download</button></div>}</div>
+  return <div className="tool-card"><Uploader onFiles={choose}/>{object&&<ModelCanvas object={object}/>}<div className="converter-controls"><label>Compression level<select value={quality} onChange={e=>setQuality(e.target.value)}><option value="high">High quality</option><option value="balanced">Balanced</option><option value="small">Smaller file</option></select></label><button className="primary-btn" disabled={!object||busy} onClick={run}>{busy?"Compressing…":"Compress to GLB"}</button></div>{error&&<div className="error-box">{error}</div>}{result&&<div className="success-box">✓ Compressed GLB ready. <button className="text-link" onClick={()=>downloadBlob(result.blob,(files[0]?.name||"model").replace(/\.[^.]+$/,"")+".glb")}>Download</button></div>}</div>
 }
 
 function ImageTo3D(){
   const [img,setImg]=useState(null),[quality,setQuality]=useState("balanced"),[busy,setBusy]=useState(false),[error,setError]=useState(""),[object,setObject]=useState(null),[result,setResult]=useState(null);
   useSEO("Image to 3D | Convert 3D","Create a lightweight image-derived 3D relief locally in your browser.","/image-to-3d");
   const generate=async()=>{if(!img)return;setBusy(true);setError("");setResult(null);try{const r=await imageTo3D(img,quality);setObject(r.object);setResult((await exportModel(r.object,"glb")).blob)}catch(e){setError(e?.message||"Image-to-3D failed.")}finally{setBusy(false)}};
-  return <PageShell title="Image to 3D" subtitle="Turn a reference image into a lightweight 3D relief locally in your browser."><div className="tool-card"><Uploader accept="image/*" labelText="Select a reference image" onFiles={f=>{setImg(f[0]);setError("");setResult(null);setObject(null)}}/>{img&&<div className="success-box">✓ Ready: {img.name}</div>}{object&&<ModelCanvas object={object}/>}<div className="converter-controls"><label>Quality<select value={quality} onChange={e=>setQuality(e.target.value)}><option value="fast">Fast</option><option value="balanced">Balanced</option><option value="high">High detail</option></select></label><button className="primary-btn" disabled={!img||busy} onClick={generate}>{busy?"Generating…":"Generate 3D"}</button></div>{error&&<div className="error-box">{error}</div>}{result&&<div className="success-box">✓ 3D relief ready. <button className="text-link" onClick={()=>downloadBlob(result,(img?.name||"model").replace(/.[^.]+$/,"")+".glb")}>Download GLB</button></div>}</div></PageShell>
+  return <PageShell title="Image to 3D" subtitle="Turn a reference image into a lightweight 3D relief locally in your browser."><div className="tool-card"><Uploader accept="image/*" labelText="Select a reference image" onFiles={f=>{setImg(f[0]);setError("");setResult(null);setObject(null)}}/>{img&&<div className="success-box">✓ Ready: {img.name}</div>}{object&&<ModelCanvas object={object}/>}<div className="converter-controls"><label>Quality<select value={quality} onChange={e=>setQuality(e.target.value)}><option value="fast">Fast</option><option value="balanced">Balanced</option><option value="high">High detail</option></select></label><button className="primary-btn" disabled={!img||busy} onClick={generate}>{busy?"Generating…":"Generate 3D"}</button></div>{error&&<div className="error-box">{error}</div>}{result&&<div className="success-box">✓ 3D relief ready. <button className="text-link" onClick={()=>downloadBlob(result,(img?.name||"model").replace(/\.[^.]+$/,"")+".glb")}>Download GLB</button></div>}</div></PageShell>
 }
 
 
 function API(){
   useSEO("Convert3D API","Developer API information for integrations using the repository conversion endpoint.","/developer-api");
-  return <PageShell title="Convert3D API" subtitle="Integrate supported conversion workflows into your own applications."><div className="api-page-grid"><div className="tool-card"><h2>POST /api/convert</h2><pre>multipart/form-data{String.fromCharCode(10)}file = model.step{String.fromCharCode(10)}output = glb</pre><p>Use the endpoint for formats supported by the bundled server engine. Validate the response headers and do not assume unsupported outputs are available.</p></div><div className="api-copy"><h2>Built for developers</h2><p>Simple REST endpoint, health check, and the same browser-first format catalog used by the web interface.</p><Link className="primary-btn" to="/convert">Get Started</Link></div></div></PageShell>
+  return <PageShell title="Convert3D API" subtitle="Integrate supported conversion workflows into your own applications."><div className="api-page-grid"><div className="tool-card"><h2>POST /api/convert</h2><pre>multipart/form-data{String.fromCharCode(10)}file = model.step{String.fromCharCode(10)}output = glb</pre><p>Use the endpoint for formats supported by the bundled server engine. Validate the response headers and do not assume unsupported outputs are available.</p></div><div className="api-copy"><h2>Built for developers</h2><p>Simple REST endpoint with a real GLB fallback, health check, and the same browser-first format catalog used by the web interface.</p><Link className="primary-btn" to="/convert">Get Started</Link></div></div></PageShell>
 }
 
 const posts=[["dwg-solid","From DWG to solid workflows"],["blender-gltf","Blender to glTF for the web"],["glb-size","How to reduce GLB size"],["sharing-3d","Sharing 3D models safely"]];
 function Posts(){useSEO("3D workflow guides","Practical notes about formats, conversion, viewing and delivery.","/posts");return <PageShell title="3D workflow guides" subtitle="Practical notes about formats, conversion, viewing and delivery."><div className="post-grid">{posts.map(([s,t])=><Link className="post-card" to={"/posts/"+s} key={s}><span className="eyebrow">GUIDE</span><h2>{t}</h2><p>Practical guidance for a common 3D workflow.</p><b>Read article →</b></Link>)}</div></PageShell>}
 function Post(){const {slug}=useParams();const p=posts.find(x=>x[0]===slug);if(!p)return <NotFound/>;useSEO(p[1]+" | Convert 3D","A practical note for creators working across multiple 3D tools and formats.","/posts/"+slug);return <article className="article"><Link className="crumb" to="/posts">Blog</Link><span className="eyebrow">GUIDE</span><h1>{p[1]}</h1><p>Choose the format based on the final software or delivery target. After conversion, inspect geometry, scale, materials, textures and metadata instead of assuming every feature maps perfectly.</p><h2>Suggested workflow</h2><ol><li>Keep an untouched source copy.</li><li>Choose a destination based on the actual target application.</li><li>Preview the result before distribution.</li><li>Record important settings for repeatable exports.</li></ol></article>}
 
-function All(){useSEO("1000+ possible conversions | Convert 3D","Browse the full 3D format and conversion-path catalog.","/all");return <PageShell title="1000+ possible conversions" subtitle="Find your current format, then click a destination format below."><div className="all-grid">{formats.map(([key,name])=><section className="all-block" key={key}><div><h2>{name}</h2><span>{key}</span></div><p>Convert {name} file to →</p><div className="output-links">{outputs.filter(x=>x!==key).map(x=><Link key={x} to={"/"+key+"-to-"+x}>{label(x)}</Link>)}</div></section>)}</div></PageShell>}
+function All(){useSEO("Available 3D conversion paths | Convert 3D","Browse the current 3D format and conversion-path catalog.","/all");return <PageShell title="Available 3D conversion paths" subtitle="Choose a source format and one of the currently supported export formats."><div className="all-grid">{formats.map(([key,name])=><section className="all-block" key={key}><div><h2>{name}</h2><span>{key}</span></div><p>Convert {name} file to →</p><div className="output-links">{outputs.filter(x=>x!==key).map(x=><Link key={x} to={"/"+key+"-to-"+x}>{label(x)}</Link>)}</div></section>)}</div></PageShell>}
 
 function About(){
   const {section}=useParams();
@@ -407,16 +376,6 @@ function Login(){
     </div>
   </PageShell>
 }
-function DesktopApp(){
-  useSEO("Convert3D Desktop App","Convert3D for Mac, Windows, and Linux.","/desktop-app");
-  return <PageShell title="Convert3D for Mac, Windows, and Linux" subtitle="Get the full power of Convert3D on your desktop. Open your 3D models straight from your file system.">
-    <div className="desktop-app-page">
-      <img src="https://convert3d.vercel.app/_next/image?q=75&url=%2Fdesktop-app.png&w=1200" alt="Convert3D Desktop App Screenshot" loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/>
-    </div>
-  </PageShell>
-}
-
-
 function NotFound(){useSEO("Page not found | Convert 3D","The requested Convert3D page does not exist.");return <main className="wrap not-found"><h1>Page not found</h1><Link className="primary-btn" to="/">Back home</Link></main>}
 
 export default function App(){
@@ -424,7 +383,7 @@ export default function App(){
     <Route path="/" element={<Home/>}/><Route path="/convert" element={<Convert/>}/><Route path="/all" element={<All/>}/>
     <Route path="/convert/:format" element={<FormatPage/>}/><Route path="/:pair/app" element={<Pair/>}/><Route path="/:pair" element={<Pair/>}/>
     <Route path="/compress" element={<Tool kind="compress"/>}/><Route path="/render-model" element={<Tool kind="render"/>}/><Route path="/view" element={<Tool kind="view"/>}/>
-    <Route path="/image-to-3d" element={<ImageTo3D/>}/><Route path="/login" element={<Login/>}/><Route path="/desktop-app" element={<DesktopApp/>}/><Route path="/developer-api" element={<API/>}/>
+    <Route path="/image-to-3d" element={<ImageTo3D/>}/><Route path="/login" element={<Login/>}/><Route path="/developer-api" element={<API/>}/>
     <Route path="/posts" element={<Posts/>}/><Route path="/posts/:slug" element={<Post/>}/><Route path="/about/:section?" element={<About/>}/><Route path="*" element={<NotFound/>}/>
   </Routes><Footer/></div>
 }
