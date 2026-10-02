@@ -6,7 +6,9 @@ export default async function handler(request,response){
     const inputType=request.headers["content-type"]||"";
     if(!inputType.includes("multipart/form-data")) return response.status(400).json({error:"Expected multipart/form-data with file and output fields."});
     const {default:assimpFactory}=await import("assimpjs");
-    const ajs=await assimpFactory();
+    const {readFileSync}=await import("node:fs");
+    const wasmBinary=readFileSync(new URL("./assimpjs.wasm",import.meta.url));
+    const ajs=await assimpFactory({wasmBinary});
     const contentType=inputType;
     const boundary=/boundary=([^;]+)/i.exec(contentType)?.[1];
     if(!boundary) return response.status(400).json({error:"Multipart boundary missing."});
