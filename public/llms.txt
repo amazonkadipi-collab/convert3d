@@ -1,6 +1,6 @@
 # Convert3D
 
-> Convert3D is a browser-first 3D model conversion toolkit for converting, viewing, rendering, compressing, and working with common CAD, mesh, scene, and realtime 3D file formats.
+> Convert3D is a browser-first 3D model conversion toolkit for converting, viewing, rendering, compressing, and working with verified CAD, mesh and scene file formats.
 
 Convert3D provides free web tools with local browser processing for supported conversions and a server fallback for conversion paths that require the bundled server engine. Treat the published page content and capability notes as the source of truth.
 
@@ -21,7 +21,7 @@ Convert3D provides free web tools with local browser processing for supported co
 
 ## Format conversion pages
 
-The site publishes a format catalog under /convert/{format}. Current browser export targets are OBJ, STL, PLY, GLTF, GLB and USDZ; the server fallback currently supports GLB only. A catalogued source path may still depend on the bundled parser available for that source format.
+The site publishes verified source formats under /convert/{format}. Current browser export targets are OBJ, STL, PLY, GLTF, GLB and USDZ; the server fallback currently supports GLB only. Only verified source formats with an implemented browser parser are published as conversion paths.
 
 - [STEP Converter](https://converts3d.vercel.app/convert/step): STEP CAD conversion page.
 - [STP Converter](https://converts3d.vercel.app/convert/stp): STP/STEP conversion page.
@@ -37,12 +37,10 @@ The site publishes a format catalog under /convert/{format}. Current browser exp
 
 ## Conversion examples
 
-- [STEP to OBJ](https://converts3d.vercel.app/step-to-obj): STEP to OBJ workflow.
-- [OBJ to FBX](https://converts3d.vercel.app/obj-to-fbx): OBJ to FBX workflow.
-- [FBX to GLB](https://converts3d.vercel.app/fbx-to-glb): FBX to GLB workflow.
-- [STL to GLB](https://converts3d.vercel.app/stl-to-glb): STL to GLB workflow.
-- [IFC to STEP](https://converts3d.vercel.app/ifc-to-stp): IFC to STP workflow.
-- [GCODE to STL](https://converts3d.vercel.app/gcode-to-stl): GCODE to STL workflow.
+- [STEP to OBJ](https://converts3d.vercel.app/step-to-obj): verified browser CAD-to-mesh workflow.
+- [OBJ to GLB](https://converts3d.vercel.app/obj-to-glb): verified browser OBJ-to-GLB workflow.
+- [FBX to GLB](https://converts3d.vercel.app/fbx-to-glb): verified browser FBX-to-GLB workflow.
+- [STL to GLB](https://converts3d.vercel.app/stl-to-glb): verified browser STL-to-GLB workflow.
 
 ## AI and agent guidance
 
