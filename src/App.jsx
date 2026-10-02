@@ -226,7 +226,7 @@ function Home(){
           </div>
           <div className="steps-grid">
             {[
-              ["Drag in your model","Scroll to the top of this page, or choose a specific converter . Drag in your 3D model file.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep01.png&w=640"],
+              ["Drag in your model","Scroll to the top of this page, or choose a specific converter. Drag in your 3D model file.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep01.png&w=640"],
               ["Preview in full 3D","We instantly preview your model in 3D. You can rotate, zoom and pan around to inspect it and make sure you have the right file.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep02.png&w=640"],
               ["Pick an export format","Choose the format to convert to. The file will immediately start downloading.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep03.png&w=640"]
             ].map(([t,d,img],i)=><div className="step-item" key={t}>
@@ -364,6 +364,15 @@ function Login(){
     </div>
   </PageShell>
 }
+function DesktopApp(){
+  useSEO("Convert3D Desktop App","Convert3D for Mac, Windows, and Linux.","/desktop-app");
+  return <PageShell title="Convert3D for Mac, Windows, and Linux" subtitle="Get the full power of Convert3D on your desktop. Open your 3D models straight from your file system.">
+    <div className="desktop-app-page">
+      <img src="https://convert3d.vercel.app/_next/image?q=75&url=%2Fdesktop-app.png&w=1200" alt="Convert3D Desktop App Screenshot" loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/>
+    </div>
+  </PageShell>
+}
+
 
 function NotFound(){useSEO("Page not found | Convert 3D","The requested Convert3D page does not exist.");return <main className="wrap not-found"><h1>Page not found</h1><Link className="primary-btn" to="/">Back home</Link></main>}
 
@@ -372,7 +381,7 @@ export default function App(){
     <Route path="/" element={<Home/>}/><Route path="/convert" element={<Convert/>}/><Route path="/all" element={<All/>}/>
     <Route path="/convert/:format" element={<FormatPage/>}/><Route path="/:pair/app" element={<Pair/>}/><Route path="/:pair" element={<Pair/>}/>
     <Route path="/compress" element={<Tool kind="compress"/>}/><Route path="/render-model" element={<Tool kind="render"/>}/><Route path="/view" element={<Tool kind="view"/>}/>
-    <Route path="/image-to-3d" element={<ImageTo3D/>}/><Route path="/login" element={<Login/>}/><Route path="/developer-api" element={<API/>}/>
+    <Route path="/image-to-3d" element={<ImageTo3D/>}/><Route path="/login" element={<Login/>}/><Route path="/desktop-app" element={<DesktopApp/>}/><Route path="/developer-api" element={<API/>}/>
     <Route path="/posts" element={<Posts/>}/><Route path="/posts/:slug" element={<Post/>}/><Route path="/about/:section?" element={<About/>}/><Route path="*" element={<NotFound/>}/>
   </Routes><Footer/></div>
 }
