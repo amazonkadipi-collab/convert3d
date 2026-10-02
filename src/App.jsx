@@ -6,6 +6,7 @@ import {Link,NavLink,Route,Routes,useParams} from "react-router-dom";
 const formats=[["step","STEP","STEP CAD"],["stp","STP","STEP CAD"],["sldprt","SLDPRT","SolidWorks Part"],["sldasm","SLDASM","SolidWorks Assembly"],["slddrw","SLDDRW","SolidWorks Drawing"],["obj","OBJ","Wavefront Object"],["fbx","FBX","Autodesk FBX"],["stl","STL","Stereolithography"],["gltf","GLTF","glTF"],["glb","GLB","glTF Binary"],["usd","USD","Universal Scene Description"],["usda","USDA","Universal Scene Description"],["usdc","USDC","Universal Scene Description"],["usdz","USDZ","Universal Scene Description"],["3dm","3DM","Rhino 3DM"],["max","MAX","3ds Max"],["blend","BLEND","Blender 3D"],["skp","SKP","Sketchup"],["dae","DAE","Collada"],["dwg","DWG","AutoCAD DWG"],["dxf","DXF","AutoCAD DXF"],["3ds","3DS","3ds Max 3DS"],["iges","IGES","Initial Graphics Exchange Specification"],["igs","IGS","Initial Graphics Exchange Specification"],["ply","PLY","Stanford Polygon Library"],["vox","VOX","MagicaVoxel"],["mdl","MDL","Quake I"],["3mf","3MF","3D Manufacturing Format"],["brep","BREP","Boundary Representation"],["smd","SMD","Valve Model"],["lwo","LWO","LightWave"],["bvh","BVH","Biovision BVH"],["x","X","DirectX X"],["rbxm","RBXM","Roblox Model File"],["rbxl","RBXL","Roblox Level File"],["b3d","B3D","BlitzBasic 3D"],["off","OFF","Object File Format"],["md3","MD3","Quake III Mesh"],["ase","ASE","3ds Max ASE"],["scn","SCN","TrueSpace"],["md2","MD2","Quake II"],["ac3d","AC3D","AC3D"],["ac","AC","AC3D"],["ms3d","MS3D","Milkshape 3D"],["cob","COB","TrueSpace"],["vta","VTA","Valve Model"],["raw","RAW","PovRAY Raw"],["ter","TER","Terragen Terrain"],["hmb","HMB","TrueSpace HMB"],["xgl","XGL","XGL"],["zgl","ZGL","XGL"],["lws","LWS","LightWave Scene"],["csm","CSM","CharacterStudio Motion"],["irrmesh","IRRMESH","Irrlicht Mesh"],["irr","IRR","Irrlicht Scene"],["iqm","IQM","Inter-Quake Model"],["mdc","MDC","Return to Castle Wolfenstein"],["md5","MD5","Doom 3"],["m3d","M3D","Model 3D"],["ogex","OGEX","Open Game Engine Exchange"],["x3d","X3D","Extensible 3D"],["q3s","Q3S","Quick3D"],["nff","NFF","Neutral File Format"],["ndo","NDO","Izware Nendo"],["amf","AMF","Additive Manufacturing File Format"],["ifc","IFC","Industry Foundation Classes"],["gcode","GCODE","G-Code"],["nc","NC","G-Code"],["3d","3D","Unreal"],["xml","XML","Mesh XML"],["acc","ACC","ACC"],["amj","AMJ","AMJ"],["ask","ASK","ASK"],["enff","ENFF","ENFF"],["mot","MOT","MOT"],["pmx","PMX","PMX"],["prj","PRJ","PRJ"],["q3o","Q3O","Q3O"],["sib","SIB","SIB"],["uc","UC","UC"],["lxo","LXO","Modo"]];
 
 const outputs=["obj","stl","ply","gltf","glb","usdz"];
+const verifiedInputs=new Set(["obj","stl","ply","fbx","gltf","glb","dae","3mf","3ds","usd","usda","usdc","usdz","step","stp","iges","igs","brep"]);
 const popularPairs=[["step","obj"],["stp","obj"],["sldprt","obj"],["amf","obj"],["ifc","stp"],["obj","fbx"],["fbx","glb"],["stl","glb"],["gcode","stl"],["3dm","obj"]];
 const sampleModels=[
   ["Damaged Helmet","https://convert3d.vercel.app/_next/static/media/damaged-helmet.aed11d90.png"],
@@ -15,7 +16,7 @@ const sampleModels=[
 
 const label=k=>formats.find(x=>x[0]===k)?.[1]||String(k||"").toUpperCase();
 const metaName=k=>formats.find(x=>x[0]===k)?.[2]||"3D file";
-const isKnownFormat=k=>formats.some(x=>x[0]===k);
+const isKnownFormat=k=>verifiedInputs.has(k);
 const isKnownPair=(a,b)=>isKnownFormat(a)&&isKnownFormat(b)&&a!==b;
 
 function useSEO(title,description,path){
@@ -97,22 +98,13 @@ function Footer(){
     <div className="wrap footer-bottom"><span>© 2026 Convert3D</span><span><Link to="/about/privacy">Privacy</Link><Link to="/about/terms">Terms</Link></span></div>
   </footer>
 }
-function SampleModels(){
-  const links=[
-    ["Damaged Helmet","https://convert3d.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdamaged-helmet.aed11d90.png&w=128&q=75"],
-    ["CAD Motor","https://convert3d.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcad-motor.c9d60b7c.png&w=128&q=75"],
-    ["Submarine","https://convert3d.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsubmarine.f0e16e26.png&w=128&q=75"]
-  ];
-  return <div className="sample-row sample-reference"><span className="sample-label">No model?<br/><b>Try one of these:</b></span><div className="sample-options">{links.map(([name,src])=><a className="sample-card" key={name} href={src} aria-label={name}><img src={src} alt={name} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/></a>)}</div></div>
-}
-
 function Uploader({accept,onFiles,labelText="Select 3D model files"}){
   const ref=useRef(null); const [drag,setDrag]=useState(false);
   const add=f=>{const a=[...f]; if(a.length) onFiles(a)};
   return <div className={"uploader "+(drag?"drag":"")}
     onDragOver={e=>{e.preventDefault();setDrag(true)}} onDragLeave={()=>setDrag(false)}
     onDrop={e=>{e.preventDefault();setDrag(false);add(e.dataTransfer.files)}}>
-    <input hidden ref={ref} type="file" multiple accept={accept||formats.map(f=>"."+f[0]).join(",")} onChange={e=>add(e.target.files)}/>
+    <input hidden ref={ref} type="file" multiple accept={accept||[...verifiedInputs].map(f=>"."+f).join(",")} onChange={e=>add(e.target.files)}/>
     <button className="select-btn upload-select" type="button" onClick={e=>{e.stopPropagation();ref.current?.click()}}>{labelText}</button>
     <p>or drop files</p>
     <div className="privacy-badge">✓ Privacy Protected <span>• WebMCP ready</span></div>
@@ -176,14 +168,14 @@ function Converter({from,to,showFormatLine=true}){
 }
 
 function Home(){
-  useSEO("Convert 3D models online - free and secure","Free, secure and fully private 3D model conversion in your browser.","/");
+  useSEO("Convert 3D models online - free and secure","Free, secure browser-first 3D model conversion with verified local and server fallback paths.","/");
   return <>
     <main className="home">
       <section className="hero">
         <div className="wrap hero-layout">
           <div className="hero-copy">
             <h1>Convert 3D models</h1>
-            <p>Free, secure and fully private. Just drag and drop your 3D model file to convert it to any popular format.</p>
+            <p>Free, secure and browser-first. Supported conversions run locally; GLB can use a clearly reported server fallback when a browser parser cannot import the source.</p>
             <div className="hero-actions">
               <Link className="primary-btn" to="/convert">Convert Model</Link>
               <a className="secondary-btn" href="https://www.youtube.com/watch?v=ZTWtnd_4eVM" target="_blank" rel="noreferrer">Watch a video</a>
@@ -191,7 +183,6 @@ function Home(){
           </div>
           <div className="hero-tool">
             <Converter showFormatLine={false}/>
-            <SampleModels/>
           </div>
         </div>
       </section>
@@ -224,9 +215,9 @@ function Home(){
           </div>
           <div className="copy-block">
             <h3>Free online 3D model converter software</h3>
-            <p>Our online 3D model converter is completely free, fast and secure. You can convert as many files as you want, no limit. All conversions happen in your browser, so there is nothing to install, and your files are not uploaded to any server.</p>
+            <p>Our online 3D model converter is free and browser-first. Verified local conversions run in your browser. When a source needs the GLB server fallback, the interface reports that server processing is being used.</p>
             <p>That also means Convert3D works on any platform, including Windows, Mac, Linux and ChromeOS and browsers like Chrome, Safari, Firefox, Edge and Brave.</p>
-            <p>Browser export is available for OBJ, STL, PLY, GLTF, GLB and USDZ. Additional source formats can be imported when the bundled browser parsers support them.</p>
+            <p>Browser export is available for OBJ, STL, PLY, GLTF, GLB and USDZ. The verified source catalog is limited to formats with an implemented browser parser in this build.</p>
           </div>
         </div>
       </section>
@@ -305,7 +296,7 @@ function FormatPage(){
 
 function Pair(){
   const {pair}=useParams(); const parts=String(pair||"").split("-to-"); const from=parts[0],to=parts[1];
-  if(!isKnownPair(from,to)) return <NotFound/>;
+  if(!isKnownPair(from,to) || !verifiedInputs.has(from) || !outputs.includes(to)) return <NotFound/>;
   useSEO(label(from)+" to "+label(to)+" Converter Online (Free)","Convert "+label(from)+" files to "+label(to)+" online. Preview the supported source before downloading.","/"+pair);
   return <PageShell title={label(from)+" to "+label(to)+" Converter"} subtitle={"Convert a "+metaName(from)+" file to "+metaName(to)+" when this output is enabled by the current browser engine."}><Converter from={from} to={to}/><section className="pair-copy"><div><h2>Convert {label(from)} to {label(to)}</h2><p>Keep an original backup. Preview the source model first and check geometry, materials, textures, units and metadata in the target application after conversion.</p></div><div className="compat-card"><b>Format path</b><span>{from} → {to}</span><small>{browserSupportedOutputs.includes(to)?"Browser exporter available":"This catalog path is shown for discovery; the current browser build may not export this target."}</small></div></section></PageShell>
 }
