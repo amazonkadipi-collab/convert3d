@@ -12,7 +12,9 @@ export default async function handler(request,response){
     if(!boundary) return response.status(400).json({error:"Multipart boundary missing."});
     const parsed=parseMultipart(body,boundary);
     const filePart=parsed.file;
+    const output=(parsed.output||"").trim().toLowerCase();
     if(!filePart) return response.status(400).json({error:"No file field supplied."});
+    if(output!=="glb") return response.status(400).json({error:"Server fallback currently supports GLB only. Other outputs are generated locally in the browser."});
     const list=new ajs.FileList();
     list.AddFile(filePart.filename||"model.bin",new Uint8Array(filePart.data));
     const result=ajs.ConvertFileList(list,"glb2");
