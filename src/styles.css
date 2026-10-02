@@ -212,3 +212,6 @@
   .step-visual.photo{height:160px}
   .footer-grid{grid-template-columns:1fr 1fr}
 }
+
+.desktop-app-page{max-width:1100px;margin:0 auto;border:1px solid #e6e6e6;border-radius:16px;overflow:hidden;background:#f7f8f8}
+.desktop-app-page img{display:block;width:100%;height:auto}
