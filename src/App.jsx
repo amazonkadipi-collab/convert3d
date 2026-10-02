@@ -38,24 +38,17 @@ function Brand(){
 }
 
 function Header(){
-  const links=[["/convert","Convert Model"],["/compress","Compress"],["/render-model","Render"],["/view","View"],["/image-to-3d","Image to 3D"]];
   return <header className="site-header">
     <div className="wrap nav">
       <Brand/>
-      <nav className="top-links" aria-label="Primary navigation">
-        {links.map(([to,labelText])=><NavLink key={to} to={to} className={({isActive})=>isActive?"top-link active":"top-link"}>{labelText}</NavLink>)}
-        <Link className="top-link" to="/login">Log in</Link>
-      </nav>
-      <Link className="header-cta" to="/convert">Convert Model</Link>
     </div>
   </header>
 }
 function Footer(){
   return <footer className="footer">
     <div className="wrap footer-grid">
-      <div className="footer-brand"><Brand/><p>Free 3D model tools for conversion, compression, rendering and viewing.</p></div>
       <div><b>Company</b><Link to="/posts">Blog</Link><Link to="/about">About</Link></div>
-      <div><b>Tools &amp; API</b><Link to="/convert">Convert</Link><Link to="/compress">Compress</Link><Link to="/render-model">Render</Link><Link to="/view">View</Link><Link to="/image-to-3d">Image to 3D</Link><Link to="/developer-api">Developer API</Link><Link to="/about">Desktop App</Link><Link to="/developer-api">WebMCP for AI agents</Link></div>
+      <div><b>Tools &amp; API</b><Link to="/convert">Convert</Link><Link to="/compress">Compress</Link><Link to="/render-model">Render</Link><Link to="/view">View</Link><Link to="/desktop-app">Desktop App</Link><Link to="/developer-api">Developer API</Link></div>
       <div><b>Community</b><a href="https://discord.gg/" target="_blank" rel="noreferrer">Discord</a></div>
     </div>
     <div className="wrap footer-bottom"><span>© 2026 Convert3D</span><span><Link to="/about/privacy">Privacy</Link><Link to="/about/terms">Terms</Link></span></div>
@@ -77,10 +70,8 @@ function Uploader({accept,onFiles,labelText="Select 3D model files"}){
     onDragOver={e=>{e.preventDefault();setDrag(true)}} onDragLeave={()=>setDrag(false)}
     onDrop={e=>{e.preventDefault();setDrag(false);add(e.dataTransfer.files)}}>
     <input hidden ref={ref} type="file" multiple accept={accept||formats.map(f=>"."+f[0]).join(",")} onChange={e=>add(e.target.files)}/>
-    <div className="upload-arrow">↑</div>
-    <h3>{labelText}</h3>
+    <button className="select-btn upload-select" type="button" onClick={e=>{e.stopPropagation();ref.current?.click()}}>{labelText}</button>
     <p>or drop files</p>
-    <button className="select-btn upload-select" type="button" onClick={e=>{e.stopPropagation();ref.current?.click()}}>Select 3D model files</button>
     <div className="privacy-badge">✓ Privacy Protected <span>• WebMCP ready</span></div>
   </div>
 }
@@ -152,7 +143,7 @@ function Home(){
             <p>Free, secure and fully private. Just drag and drop your 3D model file to convert it to any popular format.</p>
             <div className="hero-actions">
               <Link className="primary-btn" to="/convert">Convert Model</Link>
-              <a className="secondary-btn" href="https://www.youtube.com/" target="_blank" rel="noreferrer">Watch a video</a>
+              <a className="secondary-btn" href="https://www.youtube.com/watch?v=ZTWtnd_4eVM" target="_blank" rel="noreferrer">Watch a video</a>
             </div>
           </div>
           <div className="hero-tool">
@@ -211,17 +202,19 @@ function Home(){
             <Link to="/convert">See all</Link>
           </div>
           <div className="format-grid">
-            {["step","stp","sldprt","amf","ifc","obj","fbx","stl","gcode","nc","3dm","glb","usd","usda","usdz","usdc","sldasm","max"].map(k=>{
-              const f=formats.find(x=>x[0]===k)||[k,k,k];
-              return <Link to={"/convert/"+k} key={k} className="format-item"><span>{k}</span><b>.{k}</b></Link>
-            })}
+            {[
+              ["step","step","step"],["stp","stp","stp"],["sldprt","sldprt","sldprt"],["amf","amf","amf"],
+              ["ifc","",".ifc"],["obj","obj","obj"],["fbx","",".fbx"],["stl","stl","stl"],
+              ["gcode","gcode","gcode"],["nc","nc","nc"],["3dm","",".3dm"],["glb","",".glb"],
+              ["usd","",".usd"],["usda","",".usda"],["usdz","",".usdz"],["usdc","",".usdc"],
+              ["sldasm","sldasm","sldasm"],["max","",".max"]
+            ].map(([k,top,bottom])=><Link to={"/convert/"+k} key={k} className="format-item"><span>{top||" "}</span><b>{bottom}</b></Link>)}
           </div>
           <div className="copy-block">
             <h3>Free online 3D model converter software</h3>
-            <p>Our online 3D model converter is completely free, fast and secure. Convert as many supported files as you need, with no account required. Supported local conversions happen in your browser, so there is nothing to install.</p>
-            <p>Convert3D works across Windows, Mac, Linux and modern browsers including Chrome, Safari, Firefox, Edge and Brave.</p>
-            <p>We maintain a large catalog of possible conversion paths, including CAD, mesh, scene and realtime formats.</p>
-            <div className="reference-graphic" aria-hidden="true"><div className="graphic-window"><div className="graphic-toolbar"><i></i><i></i><i></i></div><div className="graphic-chart"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div><div className="graphic-orbit"></div></div>
+            <p>Our online 3D model converter is completely free, fast and secure. You can convert as many files as you want, no limit. All conversions happen in your browser, so there is nothing to install, and your files are not uploaded to any server.</p>
+            <p>That also means Convert3D works on any platform, including Windows, Mac, Linux and ChromeOS and browsers like Chrome, Safari, Firefox, Edge and Brave.</p>
+            <p>We support more than 1000+ possible conversions, including tough ones like USDZ and STEP, as well as the most common 3D model formats such as FBX, OBJ, GLTF and DAE.</p>
           </div>
         </div>
       </section>
@@ -233,9 +226,9 @@ function Home(){
           </div>
           <div className="steps-grid">
             {[
-              ["Drag in your model","Scroll to the top of this page, or choose a specific converter.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep01.png&w=640"],
-              ["Preview in full 3D","We preview supported models in 3D. Rotate, zoom and inspect the file before exporting.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep02.png&w=640"],
-              ["Pick an export format","Choose the format that fits the destination application. The file downloads when the current engine supports it.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep03.png&w=640"]
+              ["Drag in your model","Scroll to the top of this page, or choose a specific converter . Drag in your 3D model file.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep01.png&w=640"],
+              ["Preview in full 3D","We instantly preview your model in 3D. You can rotate, zoom and pan around to inspect it and make sure you have the right file.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep02.png&w=640"],
+              ["Pick an export format","Choose the format to convert to. The file will immediately start downloading.","https://convert3d.vercel.app/_next/image?q=75&url=%2FStep03.png&w=640"]
             ].map(([t,d,img],i)=><div className="step-item" key={t}>
               <div className="step-visual photo"><img src={img} alt={"Step "+(i+1)} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/></div>
               <span>Step {i+1}</span><h3>{t}</h3><p>{d}</p>
@@ -249,12 +242,12 @@ function Home(){
         <div className="wrap privacy-grid">
           <div>
             <h2>Engineered for privacy</h2>
-            <p>3D models are often important project assets. Supported local conversions are processed on your machine so you can keep control of your files.</p>
+            <p>3D models are often key to your business. We believe that means you should be in control of them and do everything to keep them private.</p>
           </div>
           <div className="privacy-cards">
-            <div><b>Nothing uploaded</b><p>Supported local conversions happen on your machine.</p></div>
-            <div><b>No login required</b><p>No sign up or payment details are required for the core browser tools.</p></div>
-            <div><b>No PII tracking</b><p>The core converter does not require profile data for local processing.</p></div>
+            <div><b>Nothing uploaded</b><p>Model conversion happens locally on your machine. Nothing is uploaded to our servers.</p></div>
+            <div><b>No login required</b><p>Your conversions are 100% anonymous. No sign up, no credit card.</p></div>
+            <div><b>No PII tracking</b><p>We track anonymous usage data and statistics so we know what to improve, but nothing that can be used to identify you.</p></div>
           </div>
         </div>
       </section>
@@ -263,16 +256,17 @@ function Home(){
         <div className="wrap api-box">
           <div>
             <h2>Convert3D API</h2>
-            <p>Integrate 3D model conversion into your applications with the included REST endpoint.</p>
+            <p>Integrate 3D model conversion into your applications. Convert between 1000+ format combinations programmatically with our reliable REST API.</p>
             <div className="api-actions"><Link className="primary-btn" to="/developer-api">Learn More</Link><Link className="secondary-btn" to="/developer-api">Get Started</Link></div>
           </div>
-          <div className="api-points">{["Simple REST API","1000+ possible format paths","Clear format handling"].map(x=><span key={x}>✓ {x}</span>)}</div>
+          <div className="api-points">{["Simple REST API","1000+ possible format combinations","High performance conversion engine","Flexible pricing plans"].map(x=><span key={x}>✓ {x}</span>)}</div>
         </div>
       </section>
 
       <section className="faq-section">
         <div className="wrap narrow">
           <h2>FAQ</h2>
+          <p className="faq-intro">Read more about Convert3D or get in touch on hello@convert3d.org</p>
           {[["How does Convert3D work?","Drop your model into the converter, preview supported files, choose an output, and download the result."],["How can I be sure that my model doesn't leave my computer?","For supported local conversions, the browser engine handles the file locally. Fallback/server workflows are clearly treated as server processing."],["Why is it free and where are the ads?","The core browser workflow is free and there are no paid checkout flows in this deployment."],["What hardware is required to run Convert3D?","The workload depends on model size and browser capabilities. Large meshes can require more memory and processing time."],["Where does my 3D model go?","Supported local conversions stay in the browser; server fallback routes process files on the configured server."]].map(([q,ans])=><details key={q}><summary>{q}</summary><p>{ans}</p></details>)}
         </div>
       </section>
