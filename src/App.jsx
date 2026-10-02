@@ -3,16 +3,18 @@ import {exportModel,loadModel,compressModel,imageTo3D,browserSupportedOutputs} f
 import ModelCanvas from "./ModelCanvas.jsx";
 import {Link,NavLink,Route,Routes,useParams} from "react-router-dom";
 
-const formats=[["step","STEP","STEP CAD"],["stp","STP","STEP CAD"],["sldprt","SLDPRT","SolidWorks Part"],["sldasm","SLDASM","SolidWorks Assembly"],["slddrw","SLDDRW","SolidWorks Drawing"],["obj","OBJ","Wavefront Object"],["fbx","FBX","Autodesk FBX"],["stl","STL","Stereolithography"],["gltf","GLTF","glTF"],["glb","GLB","glTF Binary"],["usd","USD","Universal Scene Description"],["usda","USDA","Universal Scene Description"],["usdc","USDC","Universal Scene Description"],["usdz","USDZ","Universal Scene Description"],["3dm","3DM","Rhino 3DM"],["max","MAX","3ds Max"],["blend","BLEND","Blender 3D"],["skp","SKP","Sketchup"],["dae","DAE","Collada"],["dwg","DWG","AutoCAD DWG"],["dxf","DXF","AutoCAD DXF"],["3ds","3DS","3ds Max 3DS"],["iges","IGES","Initial Graphics Exchange Specification"],["igs","IGS","Initial Graphics Exchange Specification"],["ply","PLY","Stanford Polygon Library"],["vox","VOX","MagicaVoxel"],["mdl","MDL","Quake I"],["3mf","3MF","3D Manufacturing Format"],["brep","BREP","Boundary Representation"],["smd","SMD","Valve Model"],["lwo","LWO","LightWave"],["bvh","BVH","Biovision BVH"],["x","X","DirectX X"],["rbxm","RBXM","Roblox Model File"],["rbxl","RBXL","Roblox Level File"],["b3d","B3D","BlitzBasic 3D"],["off","OFF","Object File Format"],["md3","MD3","Quake III Mesh"],["ase","ASE","3ds Max ASE"],["scn","SCN","TrueSpace"],["md2","MD2","Quake II"],["ac3d","AC3D","AC3D"],["ac","AC","AC3D"],["ms3d","MS3D","Milkshape 3D"],["cob","COB","TrueSpace"],["vta","VTA","Valve Model"],["raw","RAW","PovRAY Raw"],["ter","TER","Terragen Terrain"],["hmb","HMB","TrueSpace HMB"],["xgl","XGL","XGL"],["zgl","ZGL","XGL"],["lws","LWS","LightWave Scene"],["csm","CSM","CharacterStudio Motion"],["irrmesh","IRRMESH","Irrlicht Mesh"],["irr","IRR","Irrlicht Scene"],["iqm","IQM","Inter-Quake Model"],["mdc","MDC","Return to Castle Wolfenstein"],["md5","MD5","Doom 3"],["m3d","M3D","Model 3D"],["ogex","OGEX","Open Game Engine Exchange"],["x3d","X3D","Extensible 3D"],["q3s","Q3S","Quick3D"],["nff","NFF","Neutral File Format"],["ndo","NDO","Izware Nendo"],["amf","AMF","Additive Manufacturing File Format"],["ifc","IFC","Industry Foundation Classes"],["gcode","GCODE","G-Code"],["nc","NC","G-Code"],["3d","3D","Unreal"],["xml","XML","Mesh XML"],["acc","ACC","ACC"],["amj","AMJ","AMJ"],["ask","ASK","ASK"],["enff","ENFF","ENFF"],["mot","MOT","MOT"],["pmx","PMX","PMX"],["prj","PRJ","PRJ"],["q3o","Q3O","Q3O"],["sib","SIB","SIB"],["uc","UC","UC"],["lxo","LXO","Modo"]];
-
+const formats=[
+  ["obj","OBJ","Wavefront Object"],["stl","STL","Stereolithography"],["ply","PLY","Stanford Polygon Library"],
+  ["fbx","FBX","Autodesk FBX"],["gltf","GLTF","glTF"],["glb","GLB","glTF Binary"],["dae","DAE","Collada"],
+  ["3mf","3MF","3D Manufacturing Format"],["3ds","3DS","3ds Max"],["usd","USD","Universal Scene Description"],
+  ["usda","USDA","Universal Scene Description"],["usdc","USDC","Universal Scene Description"],["usdz","USDZ","Universal Scene Description"],
+  ["step","STEP","STEP CAD"],["stp","STP","STEP CAD"],["iges","IGES","Initial Graphics Exchange Specification"],
+  ["igs","IGS","Initial Graphics Exchange Specification"],["brep","BREP","Boundary Representation"]
+];
 const outputs=["obj","stl","ply","gltf","glb","usdz"];
 const verifiedInputs=new Set(["obj","stl","ply","fbx","gltf","glb","dae","3mf","3ds","usd","usda","usdc","usdz","step","stp","iges","igs","brep"]);
 const popularPairs=[["step","obj"],["stp","obj"],["sldprt","obj"],["amf","obj"],["ifc","stp"],["obj","fbx"],["fbx","glb"],["stl","glb"],["gcode","stl"],["3dm","obj"]];
-const sampleModels=[
-  ["Damaged Helmet","https://convert3d.vercel.app/_next/static/media/damaged-helmet.aed11d90.png"],
-  ["CAD Motor","https://convert3d.vercel.app/_next/static/media/cad-motor.c9d60b7c.png"],
-  ["Submarine","https://convert3d.vercel.app/_next/static/media/submarine.f0e16e26.png"]
-];
+
 
 const label=k=>formats.find(x=>x[0]===k)?.[1]||String(k||"").toUpperCase();
 const metaName=k=>formats.find(x=>x[0]===k)?.[2]||"3D file";
