@@ -149,8 +149,8 @@ function Converter({from,to,showFormatLine=true}){
           const result=await exportModel(r.object,out); const base=file.name.replace(/\.[^.]+$/,"");
           downloadBlob(result.blob,base+"."+result.ext); setDone(n=>n+1);
         }catch(localError){
+          if(out!=="glb") throw localError;
           const server=await serverConvert(file,out);
-          if(server.format!==out) throw new Error("The selected output format is not available in the current server engine.");
           downloadBlob(server.blob,file.name.replace(/\.[^.]+$/,"")+"."+server.format);
           setEngine(server.processing); setDone(n=>n+1);
         }
@@ -343,7 +343,7 @@ function ImageTo3D(){
   const [img,setImg]=useState(null),[quality,setQuality]=useState("balanced"),[busy,setBusy]=useState(false),[error,setError]=useState(""),[object,setObject]=useState(null),[result,setResult]=useState(null);
   useSEO("Image to 3D | Convert 3D","Create a lightweight image-derived 3D relief locally in your browser.","/image-to-3d");
   const generate=async()=>{if(!img)return;setBusy(true);setError("");setResult(null);try{const r=await imageTo3D(img,quality);setObject(r.object);setResult((await exportModel(r.object,"glb")).blob)}catch(e){setError(e?.message||"Image-to-3D failed.")}finally{setBusy(false)}};
-  return <PageShell title="Image to 3D" subtitle="Turn a reference image into a lightweight 3D relief locally in your browser."><div className="tool-card"><Uploader accept="image/*" labelText="Select a reference image" onFiles={f=>{setImg(f[0]);setError("");setResult(null);setObject(null)}}/>{img&&<div className="success-box">✓ Ready: {img.name}</div>}{object&&<ModelCanvas object={object}/>}<div className="converter-controls"><label>Quality<select value={quality} onChange={e=>setQuality(e.target.value)}><option value="fast">Fast</option><option value="balanced">Balanced</option><option value="high">High detail</option></select></label><button className="primary-btn" disabled={!img||busy} onClick={generate}>{busy?"Generating…":"Generate 3D"}</button></div>{error&&<div className="error-box">{error}</div>}{result&&<div className="success-box">✓ 3D relief ready. <button className="text-link" onClick={()=>downloadBlob(result,(img?.name||"model").replace(/\.[^.]+$/,"")+".glb")}>Download GLB</button></div>}</div></PageShell>
+  return <PageShell title="Image to 3D relief" subtitle="Turn a reference image into a lightweight 3D relief locally in your browser."><div className="tool-card"><Uploader accept="image/*" labelText="Select a reference image" onFiles={f=>{setImg(f[0]);setError("");setResult(null);setObject(null)}}/>{img&&<div className="success-box">✓ Ready: {img.name}</div>}{object&&<ModelCanvas object={object}/>}<div className="converter-controls"><label>Quality<select value={quality} onChange={e=>setQuality(e.target.value)}><option value="fast">Fast</option><option value="balanced">Balanced</option><option value="high">High detail</option></select></label><button className="primary-btn" disabled={!img||busy} onClick={generate}>{busy?"Generating…":"Generate 3D"}</button></div>{error&&<div className="error-box">{error}</div>}{result&&<div className="success-box">✓ 3D relief ready. <button className="text-link" onClick={()=>downloadBlob(result,(img?.name||"model").replace(/\.[^.]+$/,"")+".glb")}>Download GLB</button></div>}</div></PageShell>
 }
 
 
