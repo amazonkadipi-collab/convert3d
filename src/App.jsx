@@ -75,7 +75,7 @@ function Uploader({accept,onFiles,labelText="Select 3D model files"}){
     <div className="upload-arrow">↑</div>
     <h3>{labelText}</h3>
     <p>or drop files</p>
-    <button className="select-btn upload-select" type="button" onClick={e=>{e.stopPropagation();open()}}>Select 3D model files</button>
+    <button className="select-btn upload-select" type="button" onClick={e=>{e.stopPropagation();ref.current?.click()}}>Select 3D model files</button>
     <div className="privacy-badge">✓ Privacy Protected <span>• WebMCP ready</span></div>
   </div>
 }
