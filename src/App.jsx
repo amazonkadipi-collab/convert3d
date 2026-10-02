@@ -23,7 +23,7 @@ const isKnownPair=(a,b)=>isKnownFormat(a)&&isKnownFormat(b)&&a!==b;
 
 function useSEO(title,description,path){
   useEffect(()=>{
-    const base="https://converts3d.vercel.app";
+    const base=window.location.origin;
     const canonicalUrl=base+(path||window.location.pathname);
     document.documentElement.lang="en";
     document.title=title;
@@ -87,6 +87,14 @@ function Header(){
   return <header className="site-header">
     <div className="wrap nav">
       <Brand/>
+      <nav className="top-links" aria-label="Primary navigation">
+        <NavLink className="top-link" to="/convert">Convert</NavLink>
+        <NavLink className="top-link" to="/compress">Compress</NavLink>
+        <NavLink className="top-link" to="/render-model">Render</NavLink>
+        <NavLink className="top-link" to="/view">View</NavLink>
+        <NavLink className="top-link" to="/developer-api">API</NavLink>
+      </nav>
+      <Link className="header-cta" to="/convert">Convert Model</Link>
     </div>
   </header>
 }
@@ -109,7 +117,7 @@ function Uploader({accept,onFiles,labelText="Select 3D model files"}){
     <input hidden ref={ref} type="file" multiple accept={accept||[...verifiedInputs].map(f=>"."+f).join(",")} onChange={e=>add(e.target.files)}/>
     <button className="select-btn upload-select" type="button" onClick={e=>{e.stopPropagation();ref.current?.click()}}>{labelText}</button>
     <p>or drop files</p>
-    <div className="privacy-badge">✓ Privacy Protected <span>• WebMCP ready</span></div>
+    <div className="privacy-badge">✓ Privacy Protected</div>
   </div>
 }
 
