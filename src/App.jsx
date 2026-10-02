@@ -60,7 +60,7 @@ function SampleModels(){
     ["CAD Motor","https://convert3d.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fcad-motor.c9d60b7c.png&w=128&q=75"],
     ["Submarine","https://convert3d.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsubmarine.f0e16e26.png&w=128&q=75"]
   ];
-  return <div className="sample-row sample-reference"><span className="sample-label">No model?<br/><b>Try one of these:</b></span><div className="sample-options">{links.map(([name,src])=><a className="sample-card" key={name} href={src} target="_blank" rel="noreferrer" aria-label={name}><img src={src} alt={name} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/></a>)}</div></div>
+  return <div className="sample-row sample-reference"><span className="sample-label">No model?<br/><b>Try one of these:</b></span><div className="sample-options">{links.map(([name,src])=><a className="sample-card" key={name} href={src} aria-label={name}><img src={src} alt={name} loading="lazy" onError={e=>{e.currentTarget.style.display="none"}}/></a>)}</div></div>
 }
 
 function Uploader({accept,onFiles,labelText="Select 3D model files"}){
