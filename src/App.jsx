@@ -20,13 +20,56 @@ const isKnownPair=(a,b)=>isKnownFormat(a)&&isKnownFormat(b)&&a!==b;
 
 function useSEO(title,description,path){
   useEffect(()=>{
+    const base="https://converts3d.vercel.app";
+    const canonicalUrl=base+(path||window.location.pathname);
+    document.documentElement.lang="en";
     document.title=title;
-    let m=document.querySelector('meta[name="description"]');
-    if(!m){m=document.createElement("meta");m.name="description";document.head.appendChild(m)}
-    m.content=description;
-    let canonical=document.querySelector('link[rel="canonical"]');
-    if(!canonical){canonical=document.createElement("link");canonical.rel="canonical";document.head.appendChild(canonical)}
-    canonical.href="https://converts3d.vercel.app"+(path||window.location.pathname);
+    const meta=(name,content,property=false)=>{
+      const selector='meta['+(property?'property':'name')+'="'+name+'"]';
+      let el=document.head.querySelector(selector);
+      if(!el){
+        el=document.createElement("meta");
+        if(property) el.setAttribute("property",name); else el.setAttribute("name",name);
+        document.head.appendChild(el);
+      }
+      el.setAttribute("content",content);
+    };
+    const link=(rel,href)=>{
+      let el=[...document.head.querySelectorAll("link")].find(x=>x.rel===rel&&x.dataset.seoLink==="true");
+      if(!el){el=document.createElement("link");el.rel=rel;el.dataset.seoLink="true";document.head.appendChild(el)}
+      el.href=href;
+    };
+    meta("description",description);
+    meta("robots","index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1");
+    meta("googlebot","index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1");
+    meta("author","Convert3D");
+    meta("application-name","Convert3D");
+    meta("theme-color","#ffffff");
+    meta("og:type","website",true);
+    meta("og:site_name","Convert3D",true);
+    meta("og:title",title,true);
+    meta("og:description",description,true);
+    meta("og:url",canonicalUrl,true);
+    meta("og:locale","en_US",true);
+    meta("twitter:card","summary_large_image");
+    meta("twitter:title",title);
+    meta("twitter:description",description);
+    link("canonical",canonicalUrl);
+    link("describedby",base+"/llms.txt");
+    document.head.querySelectorAll('script[data-convert3d-seo="true"]').forEach(x=>x.remove());
+    const jsonLd=path==="/"
+      ? [
+          {"@context":"https://schema.org","@type":"WebSite","@id":base+"#website","url":base+"/","name":"Convert3D","description":"Free online 3D model conversion tools.","inLanguage":"en"},
+          {"@context":"https://schema.org","@type":"SoftwareApplication","@id":base+"#software","name":"Convert3D","url":base+"/","applicationCategory":"MultimediaApplication","operatingSystem":"Web Browser","description":"Free online 3D model converter for popular CAD, mesh and 3D formats.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+        ]
+      : [{"@context":"https://schema.org","@type":"WebPage","@id":canonicalUrl+"#webpage","url":canonicalUrl,"name":title,"description":description,"isPartOf":{"@id":base+"#website"},"inLanguage":"en"}];
+    jsonLd.forEach(data=>{
+      const script=document.createElement("script");
+      script.type="application/ld+json";
+      script.dataset.convert3dSeo="true";
+      script.textContent=JSON.stringify(data);
+      document.head.appendChild(script);
+    });
   },[title,description,path]);
 }
 
