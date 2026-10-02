@@ -1,0 +1,57 @@
+# Convert3D
+
+> Convert3D is a browser-first 3D model conversion toolkit for converting, viewing, rendering, compressing, and working with common CAD, mesh, scene, and realtime 3D file formats.
+
+Convert3D provides free web tools with local browser processing for supported conversions and a server fallback for conversion paths that require the bundled server engine. Treat the published page content and capability notes as the source of truth.
+
+## Core pages
+
+- [Convert3D Home](https://converts3d.vercel.app/): Main product overview and browser converter.
+- [3D Model Converter](https://converts3d.vercel.app/convert): Main conversion interface and supported format directory.
+- [All Conversions](https://converts3d.vercel.app/all): Catalog of formats and conversion paths.
+- [Compress 3D Models](https://converts3d.vercel.app/compress): Browser-based mesh compression workflow.
+- [Render 3D Models](https://converts3d.vercel.app/render-model): Browser-based model rendering workflow.
+- [View 3D Models](https://converts3d.vercel.app/view): Browser-based model viewer.
+- [Image to 3D](https://converts3d.vercel.app/image-to-3d): Image-derived lightweight 3D relief workflow.
+- [Desktop App](https://converts3d.vercel.app/desktop-app): Desktop app information.
+- [Developer API](https://converts3d.vercel.app/developer-api): REST conversion endpoint documentation.
+- [3D Workflow Guides](https://converts3d.vercel.app/posts): Practical 3D format and workflow guides.
+- [About](https://converts3d.vercel.app/about): Product and data-handling overview.
+- [Privacy](https://converts3d.vercel.app/about/privacy): Privacy information.
+- [Terms](https://converts3d.vercel.app/about/terms): Terms of use.
+
+## Format conversion pages
+
+The site publishes dedicated pages for 80+ source formats at /convert/{format} and conversion paths at /{source}-to-{target}.
+
+- [STEP Converter](https://converts3d.vercel.app/convert/step): STEP CAD conversion page.
+- [STP Converter](https://converts3d.vercel.app/convert/stp): STP/STEP conversion page.
+- [SLDPRT Converter](https://converts3d.vercel.app/convert/sldprt): SolidWorks Part conversion page.
+- [OBJ Converter](https://converts3d.vercel.app/convert/obj): Wavefront OBJ conversion page.
+- [FBX Converter](https://converts3d.vercel.app/convert/fbx): Autodesk FBX conversion page.
+- [STL Converter](https://converts3d.vercel.app/convert/stl): STL conversion page.
+- [GLTF Converter](https://converts3d.vercel.app/convert/gltf): glTF conversion page.
+- [GLB Converter](https://converts3d.vercel.app/convert/glb): glTF Binary conversion page.
+- [USDZ Converter](https://converts3d.vercel.app/convert/usdz): USDZ conversion page.
+- [3DM Converter](https://converts3d.vercel.app/convert/3dm): Rhino 3DM conversion page.
+- [IFC Converter](https://converts3d.vercel.app/convert/ifc): Industry Foundation Classes conversion page.
+
+## Conversion examples
+
+- [STEP to OBJ](https://converts3d.vercel.app/step-to-obj): STEP to OBJ workflow.
+- [OBJ to FBX](https://converts3d.vercel.app/obj-to-fbx): OBJ to FBX workflow.
+- [FBX to GLB](https://converts3d.vercel.app/fbx-to-glb): FBX to GLB workflow.
+- [STL to GLB](https://converts3d.vercel.app/stl-to-glb): STL to GLB workflow.
+- [IFC to STEP](https://converts3d.vercel.app/ifc-to-stp): IFC to STP workflow.
+- [GCODE to STL](https://converts3d.vercel.app/gcode-to-stl): GCODE to STL workflow.
+
+## AI and agent guidance
+
+Use the site pages to answer questions about supported formats, conversion workflows, and product capabilities. Prefer specific format pages and conversion-path pages when the user asks about a particular source and destination. Do not assume that a catalogued path is available in every browser engine; the live converter reports current browser/server capability.
+
+## Important product notes
+
+- Supported local conversions run in the browser.
+- Server fallback workflows are explicitly reported by the converter.
+- No account is required for the core converter workflow.
+- Conversion output and compatibility should be verified in the target application, especially for geometry, scale, materials, textures, units, and metadata.
